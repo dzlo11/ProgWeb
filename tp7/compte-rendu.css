@@ -1,0 +1,116 @@
+/* --- Mise en page globale --- */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    max-width: 1000px;
+    margin: 0 auto; /* 0 pour le haut/bas, auto pour centrer horizontalement */
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* --- Titres --- */
+h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #003366; /* Bleu foncé */
+    border-bottom: 3px solid #003366;
+    padding-bottom: 8px;
+    margin-top: 50px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: #3581B8;
+    margin-top: 25px;
+}
+
+/* --- Alignements et blocs --- */
+.centered {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+    margin-bottom: 40px;
+    font-style: italic;
+    border-right: 4px solid #3581B8;
+    padding-right: 15px;
+}
+
+/* --- Éléments de code et commandes --- */
+pre {
+    background-color: #2d2d2d; /* Fond sombre type terminal */
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+code {
+    background-color: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    color: #d63384; /* Couleur distinctive pour le code in-line */
+}
+
+/* --- Tableaux (pour l'exercice 2) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #003366;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* --- Citations et Remarques --- */
+blockquote {
+    background: #e7f3fe;
+    border-left: 10px solid #2196F3;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    font-style: italic;
+}
+
+/* --- Listes --- */
+ul, ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* --- Pied de page --- */
+footer {
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: #777;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}

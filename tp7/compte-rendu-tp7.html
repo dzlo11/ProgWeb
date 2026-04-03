@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compte-rendu du tp7</title>
+        <link rel="stylesheet" href="compte-rendu.css">
+        
+    </head>
+
+    <body>
+        <h1 class="centered">Compte-rendu de tp5</h1>
+
+        <div class="right">
+            <p>NGALULA KABONGO David <br>
+              Groupe TP 11 <br>
+              L1 Math-Info Université Gustave Eiffel <br>
+            </p>
+        </div>
+
+        <section>
+          <h2>Exercice 1 &nbsp;: Memory&nbsp;</h2>
+
+            <ol>
+
+              <li>
+                <h3>Ouvrez un navigateur Web et allez à l'URL suivante: <a href="http://www.w3.org/standards/">http://www.w3.org/standards/</a> <br>
+                  Quel est le nom de la machine à laquelle vous accédez ? <br>
+                  Quel est le nom de domaine auquel vous accédez ?
+                </h3>
+                <ul>
+                  <li>Nom de domaine : est <strong>w3.org</strong></li>
+                  <li>Nom de machine : est <strong>www.w3.org</strong> plus précisement le "www".</li>
+                </ul>
+              </li>
+
+              <li>
+                <h3>Si l'on exécute <strong>host w3.org</strong> <br>
+                  À quoi correspond la première ligne de la réponse ? <br>
+                  À quoi correspond la deuxième ligne de la réponse ? <br>
+                  Et la troisième ?</h3>
+                  <p>Cette commande interroge le DNS. Les trois lignes correspondent généralement à :</p>
+                  <ol>
+                    <li><strong>Adresse IPv4 :</strong> L'identifiant numérique classique donc ici 104.18.23.19.</li>
+                    <li><strong>Adresse IPv6 :</strong> L'identifiant nouvelle génération donc ici 2606:4700::6812:1713.</li>
+                    <li><strong>Serveur Mail :</strong> Le serveur qui gère les courriels pour ce domaine donc ici "5 puck.w3.org".</li>
+                  </ol>
+
+<pre><code>david@Davs:~$ host w3.org
+w3.org has address 104.18.23.19
+w3.org has address 104.18.22.19
+w3.org has IPv6 address 2606:4700::6812:1713
+w3.org has IPv6 address 2606:4700::6812:1613
+w3.org mail is handled by 5 puck.w3.org.
+w3.org mail is handled by 5 pan.w3.org.</code></pre>
+              </li>
+
+              <li>
+                <h3>Dans le navigateur Web, dans la barre contenant l'URL, remplacez le nom de la machine par son adresse IP pour vérifier que cela fonctionne toujours. <br>
+                  Si ça ne marche pas, que se passe-t-il ? Essayez avec google.fr. <br>
+                  À votre avis, pourquoi utilise-t-on des noms pour les machines plutôt que des adresses IP ?</h3>
+                  <p>Si l'on remplace le nom par l'IP, cela peut échouer (Erreur 404). Cela arrive car un même serveur (une seule IP) peut héberger des centaines de sites différents. Sans le nom de domaine, le serveur ne sait pas quel site afficher.
+                    Donc on utilise des noms pour la mémorisation humaine et la flexibilité technique (on peut changer de serveur/IP sans changer l'adresse URL).</p>
+              </li>
+
+              <li>
+                <h3>Exécutez la commande traceroute sur une de ces adresses IP. <br>
+                  Qu'affiche cette commande ? <br>
+                  Comment s'appelle le réseau sur lequel est connectée l'université (ou votre domicile) ? <br>
+                  Quels sont les autres réseaux qui sont traversés ? <br>
+                  Si vous êtes sur Mac, il se peut que votre traceroute se coince, cela peut aider d'ajouter l'option -I (par exemple traceroute -I 8.8.8.8).</h3>
+                  <p>Cette commande affiche tous les routeurs intermédiaires. À l'université, on passe généralement par le réseau <strong>RENATER</strong>, puis par des opérateurs de transit (comme Orange ou Cogent) avant d'atteindre la destination.</p>
+              </li>
+
+              <li>
+                <h3>
+                  Tendance du jour : le cours de programmation web a l'air trop bien ! Pour en savoir plus, on souhaite consulter la page http://vincentjuge1987.github.io/.
+                  Utiliser la commande host pour récupérer l'adresse IP correspondant à cette machine.
+                </h3>
+                <ul>
+                    <li><strong>Adresse IPv4 :</strong> L'identifiant numérique classique de la page web est donc 185.199.109.153</li>
+                    <li><strong>Adresse IPv6 :</strong> L'identifiant nouvelle génération de la page web donc 2606:50c0:8000::153</li>
+                </ul>
+              </li>
+              
+              <li>
+                <h3>
+                  On cherche maintenant à voir l'ancienne version du cours, que donnait Rémi Forax, à l'adresse https://forax.github.io/course/progweb/.
+                  Lancer la commande host pour récupérer l'adresse IP correspondant à cette machine. Qu'observe-t-on ?
+                  Que se passe-t-il si on essaye d'accéder à cette page dans le navigateur en remplaçant le nom de la machine par l'adresse IP trouvée précédemment ?
+                  Et si on remplaçait forax.github.io par vincentjuge1987.github.io au début de l'URL ? Expliquer pourquoi.
+                </h3>
+                <p>On observe que <code>vincentjuge1987.github.io</code> et <code>forax.github.io</code> partagent la <strong>même adresse IP</strong>.</p>
+                <p>En remplaçant le nom par l'IP, le serveur est incapable de distinguer quel site servir. Si on change le nom dans l'URL mais garde le chemin, le serveur cherchera la page de Rémi Forax sur le compte de Vincent Juge, ce qui provoquera une erreur.</p>
+              </li>
+            </ol>
+
+        </section>
+
+    </body>
+</html>
