@@ -1,101 +1,262 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Compte-rendu du tp7</title>
-        <link rel="stylesheet" href="compte-rendu.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Compte-rendu du TP7 - Programmation Web</title>
+    <link rel="stylesheet" href="compte-rendu.css">
+</head>
+
+<body>
+    <header class="page-de-garde">
+        <div class="univ-info">
+            <p>Université Gustave Eiffel</p>
+            <p>Licence 1 Mathématiques - Informatique</p>
+        </div>
         
-    </head>
-
-    <body>
-        <h1 class="centered">Compte-rendu de tp5</h1>
-
-        <div class="right">
-            <p>NGALULA KABONGO David <br>
-              Groupe TP 11 <br>
-              L1 Math-Info Université Gustave Eiffel <br>
-            </p>
+        <div class="tp-info centered">
+            <h1>Compte-rendu de TP n°7</h1>
+            <h2>Architecture du Web et Protocole HTTP</h2>
         </div>
 
+        <div class="info-etudiant right">
+            <p>Présenté par : <strong>David NGALULA KABONGO</strong></p>
+            <p>Groupe : <strong>TP 11</strong></p>
+            <p>Date : 3 avril 2026</p>
+        </div>
+    </header>
+
+    <main>
         <section>
-          <h2>Exercice 1 &nbsp;: Memory&nbsp;</h2>
-
+            <h2>Exercice 1 : Uniform Resource Locator</h2>
             <ol>
+                <li>
+                    <h3>Ouvrez un navigateur Web et allez à l'URL suivante: <a href="http://www.w3.org/standards/">http://www.w3.org/standards/</a> <br>
+                        Quel est le nom de la machine à laquelle vous accédez ? <br>
+                        Quel est le nom de domaine auquel vous accédez ?
+                    </h3>
+                    <ul>
+                        <li>Nom de domaine : <strong>w3.org</strong>.</li>
+                        <li>Nom de machine : <strong>www</strong> (souvent utilisé pour désigner le serveur Web par défaut).</li>
+                    </ul>
+                </li>
 
-              <li>
-                <h3>Ouvrez un navigateur Web et allez à l'URL suivante: <a href="http://www.w3.org/standards/">http://www.w3.org/standards/</a> <br>
-                  Quel est le nom de la machine à laquelle vous accédez ? <br>
-                  Quel est le nom de domaine auquel vous accédez ?
-                </h3>
-                <ul>
-                  <li>Nom de domaine : est <strong>w3.org</strong></li>
-                  <li>Nom de machine : est <strong>www.w3.org</strong> plus précisement le "www".</li>
-                </ul>
-              </li>
+                <li>
+                    <h3>Si l'on exécute <strong>host w3.org</strong> <br>
+                        À quoi correspond la première ligne de la réponse ? <br>
+                        À quoi correspond la deuxième ligne de la réponse ? <br>
+                        Et la troisième ?</h3>
+                    <p>La commande interroge le service DNS (Domain Name System) pour traduire le nom en adresses exploitables par le réseau :</p>
+                    <ol>
+                        <li><strong>Première ligne :</strong> correspond à l'adresse <strong>IPv4</strong> (format 32 bits, ex: 104.18.23.19). C'est l'adresse standard utilisée pour router les paquets sur Internet.</li>
+                        <li><strong>Deuxième ligne :</strong> correspond généralement à une seconde adresse IPv4 (pour la redondance) ou à l'adresse <strong>IPv6</strong> (format 128 bits).</li>
+                        <li><strong>Troisième ligne :</strong> indique le <strong>serveur de messagerie (MX Record)</strong>. C'est la machine responsable de la réception des emails pour le domaine w3.org.</li>
+                    </ol>
 
-              <li>
-                <h3>Si l'on exécute <strong>host w3.org</strong> <br>
-                  À quoi correspond la première ligne de la réponse ? <br>
-                  À quoi correspond la deuxième ligne de la réponse ? <br>
-                  Et la troisième ?</h3>
-                  <p>Cette commande interroge le DNS. Les trois lignes correspondent généralement à :</p>
-                  <ol>
-                    <li><strong>Adresse IPv4 :</strong> L'identifiant numérique classique donc ici 104.18.23.19.</li>
-                    <li><strong>Adresse IPv6 :</strong> L'identifiant nouvelle génération donc ici 2606:4700::6812:1713.</li>
-                    <li><strong>Serveur Mail :</strong> Le serveur qui gère les courriels pour ce domaine donc ici "5 puck.w3.org".</li>
-                  </ol>
-
-<pre><code>david@Davs:~$ host w3.org
+                    <pre>david@Davs:~$ host w3.org
 w3.org has address 104.18.23.19
 w3.org has address 104.18.22.19
 w3.org has IPv6 address 2606:4700::6812:1713
 w3.org has IPv6 address 2606:4700::6812:1613
 w3.org mail is handled by 5 puck.w3.org.
-w3.org mail is handled by 5 pan.w3.org.</code></pre>
-              </li>
+w3.org mail is handled by 5 pan.w3.org.</pre>
+                </li>
 
-              <li>
-                <h3>Dans le navigateur Web, dans la barre contenant l'URL, remplacez le nom de la machine par son adresse IP pour vérifier que cela fonctionne toujours. <br>
-                  Si ça ne marche pas, que se passe-t-il ? Essayez avec google.fr. <br>
-                  À votre avis, pourquoi utilise-t-on des noms pour les machines plutôt que des adresses IP ?</h3>
-                  <p>Si l'on remplace le nom par l'IP, cela peut échouer (Erreur 404). Cela arrive car un même serveur (une seule IP) peut héberger des centaines de sites différents. Sans le nom de domaine, le serveur ne sait pas quel site afficher.
-                    Donc on utilise des noms pour la mémorisation humaine et la flexibilité technique (on peut changer de serveur/IP sans changer l'adresse URL).</p>
-              </li>
+                <li>
+                    <h3>Dans le navigateur Web, dans la barre contenant l'URL, remplacez le nom de la machine par son adresse IP pour vérifier que cela fonctionne toujours. <br>
+                        Si ça ne marche pas, que se passe-t-il ? Essayez avec google.fr. <br>
+                        À votre avis, pourquoi utilise-t-on des noms pour les machines plutôt que des adresses IP ?</h3>
+                    <p>En essayant d'accéder directement via l'IP <code>104.18.23.19</code>, on obtient souvent une erreur (type 403 ou 404) de la part de Cloudflare. Cela se produit car le serveur héberge plusieurs sites sur la même IP ; sans le nom d'hôte, il ne sait pas quel site afficher.</p>
+                    <p>On utilise des noms car :</p>
+                    <ul>
+                        <li><strong>Mémorisation :</strong> Il est plus simple de retenir "google.fr" qu'une suite de chiffres.</li>
+                        <li><strong>Flexibilité :</strong> L'administrateur peut changer de serveur (et donc d'IP) sans que l'utilisateur n'ait à changer l'adresse qu'il tape.</li>
+                        <li><strong>Mutualisation :</strong> Une seule adresse IP peut servir des milliers de sites différents.</li>
+                    </ul>
+                </li>
 
-              <li>
-                <h3>Exécutez la commande traceroute sur une de ces adresses IP. <br>
-                  Qu'affiche cette commande ? <br>
-                  Comment s'appelle le réseau sur lequel est connectée l'université (ou votre domicile) ? <br>
-                  Quels sont les autres réseaux qui sont traversés ? <br>
-                  Si vous êtes sur Mac, il se peut que votre traceroute se coince, cela peut aider d'ajouter l'option -I (par exemple traceroute -I 8.8.8.8).</h3>
-                  <p>Cette commande affiche tous les routeurs intermédiaires. À l'université, on passe généralement par le réseau <strong>RENATER</strong>, puis par des opérateurs de transit (comme Orange ou Cogent) avant d'atteindre la destination.</p>
-              </li>
+                <li>
+                    <h3>Exécutez la commande traceroute sur une de ces adresses IP. <br>
+                        Qu'affiche cette commande ? <br>
+                        Comment s'appelle le réseau sur lequel est connectée l'université (ou votre domicile) ? <br>
+                        Quels sont les autres réseaux qui sont traversés ?</h3>
+                    <p>Cette commande affiche le chemin suivi par les paquets de données, en listant chaque routeur intermédiaire (saut).</p>
+                    <ol>
+                        <li>L'université est connectée au réseau <strong>RENATER</strong> (Réseau National de télécommunications pour l'Enseignement et la Recherche).</li>
+                        <li>On traverse ensuite des points d'échange (GIX) pour passer sur des réseaux d'opérateurs commerciaux ou des réseaux de diffusion de contenu comme <strong>Cloudflare</strong>.</li>
+                    </ol>
+                    <pre>ngalulakabongo@pcader102-10:~$ traceroute 104.18.23.19
+traceroute to 104.18.23.19 (104.18.23.19), 30 hops max, 60 byte packets
+ 1  fwint1infpedago.univ-eiffel.fr (10.122.0.2)  0.215 ms  0.259 ms  0.252 ms
+ 2  fwextvip.univ-eiffel.fr (10.123.255.4)  0.799 ms  0.794 ms  0.730 ms
+ 3  195.220.83.138 (195.220.83.138)  0.974 ms  0.910 ms  0.960 ms
+ 4  vl1488-te0-1-0-2-ren-nr-marne-rtr-091.noc.renater.fr (193.55.200.168)  1.289 ms  1.349 ms  1.280 ms
+ 5  be4-630-ren-nr-jussieu-rtr-091.noc.renater.fr (193.51.177.94)  2.226 ms  2.222 ms  2.218 ms
+ 6  193.55.206.151 (193.55.206.151)  4.079 ms xe-0-0-13-paris2-rtr-131.noc.renater.fr (193.51.180.106)  1.896 ms 193.55.206.145 (193.55.206.145)  1.764 ms
+ 7  equinix-paris.cloudflare.com (195.42.144.143)  2.907 ms  2.840 ms  3.611 ms
+ 8  141.101.67.89 (141.101.67.89)  2.589 ms 141.101.67.125 (141.101.67.125)  3.601 ms 141.101.67.115 (141.101.67.115)  2.713 ms
+ 9  104.18.23.19 (104.18.23.19)  2.920 ms  2.634 ms  2.568 ms
+</pre>
+                </li>
 
-              <li>
-                <h3>
-                  Tendance du jour : le cours de programmation web a l'air trop bien ! Pour en savoir plus, on souhaite consulter la page http://vincentjuge1987.github.io/.
-                  Utiliser la commande host pour récupérer l'adresse IP correspondant à cette machine.
-                </h3>
-                <ul>
-                    <li><strong>Adresse IPv4 :</strong> L'identifiant numérique classique de la page web est donc 185.199.109.153</li>
-                    <li><strong>Adresse IPv6 :</strong> L'identifiant nouvelle génération de la page web donc 2606:50c0:8000::153</li>
-                </ul>
-              </li>
-              
-              <li>
-                <h3>
-                  On cherche maintenant à voir l'ancienne version du cours, que donnait Rémi Forax, à l'adresse https://forax.github.io/course/progweb/.
-                  Lancer la commande host pour récupérer l'adresse IP correspondant à cette machine. Qu'observe-t-on ?
-                  Que se passe-t-il si on essaye d'accéder à cette page dans le navigateur en remplaçant le nom de la machine par l'adresse IP trouvée précédemment ?
-                  Et si on remplaçait forax.github.io par vincentjuge1987.github.io au début de l'URL ? Expliquer pourquoi.
-                </h3>
-                <p>On observe que <code>vincentjuge1987.github.io</code> et <code>forax.github.io</code> partagent la <strong>même adresse IP</strong>.</p>
-                <p>En remplaçant le nom par l'IP, le serveur est incapable de distinguer quel site servir. Si on change le nom dans l'URL mais garde le chemin, le serveur cherchera la page de Rémi Forax sur le compte de Vincent Juge, ce qui provoquera une erreur.</p>
-              </li>
+                <li>
+                    <h3>Tendance du jour : le cours de programmation web a l'air trop bien ! Pour en savoir plus, on souhaite consulter la page http://vincentjuge1987.github.io/.
+                        Utiliser la commande host pour récupérer l'adresse IP correspondant à cette machine.</h3>
+                    <p>L'adresse IPv4 obtenue pour cette machine est <code>185.199.110.153</code> </p>
+                    <pre>ngalulakabongo@pcader102-10:~$ host vincentjuge1987.github.io
+vincentjuge1987.github.io has address 185.199.110.153
+vincentjuge1987.github.io has address 185.199.111.153
+vincentjuge1987.github.io has address 185.199.108.153
+vincentjuge1987.github.io has address 185.199.109.153
+vincentjuge1987.github.io has IPv6 address 2606:50c0:8001::153
+vincentjuge1987.github.io has IPv6 address 2606:50c0:8003::153
+vincentjuge1987.github.io has IPv6 address 2606:50c0:8000::153
+vincentjuge1987.github.io has IPv6 address 2606:50c0:8002::153</pre>
+                </li>
+
+                <li>
+                    <h3>Lancer la commande host pour récupérer l'adresse IP correspondant à https://forax.github.io/course/progweb/. Qu'observe-t-on ?
+                        Que se passe-t-il si on essaye d'accéder à cette page dans le navigateur en remplaçant le nom de la machine par l'adresse IP trouvée précédemment ?
+                        Et si on remplaçait forax.github.io par vincentjuge1987.github.io au début de l'URL ? Expliquer pourquoi.</h3>
+                    <p>On observe que les deux sites partagent les <strong>mêmes adresses IP</strong>.</p>
+                    <ol>
+                        <li>L'accès par IP échoue car le serveur GitHub ne sait pas quel projet servir sans l'en-tête HTTP <code>Host</code>.</li>
+                        <li>Remplacer le nom par celui de Vincent Juge dans l'URL de Rémi Forax causera une erreur 404 sur le site de Vincent Juge, car le chemin <code>/course/progweb/</code> n'existe pas sur son dépôt.</li>
+                    </ol>
+                    <pre>ngalulakabongo@pcader102-10:~$ host forax.github.io
+forax.github.io has address 185.199.110.153
+forax.github.io has address 185.199.108.153
+forax.github.io has address 185.199.109.153
+forax.github.io has address 185.199.111.153
+forax.github.io has IPv6 address 2606:50c0:8000::153
+forax.github.io has IPv6 address 2606:50c0:8002::153
+forax.github.io has IPv6 address 2606:50c0:8001::153
+forax.github.io has IPv6 address 2606:50c0:8003::153</pre>
+                </li>
             </ol>
-
         </section>
 
-    </body>
+        <section>
+            <h2>Exercice 2 : Service HTTP</h2>
+            <ol>
+                <li>
+                    <h3>Quel est le port TCP correspondant au protocole HTTP ? Quel est le header de la réponse ?</h3>
+                    <p>Le port standard est le <strong>80</strong>. L'en-tête (header) est l'ensemble des lignes de métadonnées renvoyées avant le contenu HTML.</p>
+                    <pre>ngalulakabongo@pcader102-10:~$ nc -C monge.univ-mlv.fr 80
+GET /ens/ HTTP/1.0
+
+HTTP/1.1 200 OK
+Date: Fri, 03 Apr 2026 08:30:55 GMT
+Server: Apache
+Content-Length: 2998
+Content-Type: text/html; charset=UTF-8
+
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Enseignements&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;...&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </li>
+
+                <li>
+                    <h3>À quoi correspondent les 3 valeurs sur la première ligne de l'en-tête ?</h3>
+                    <ol>
+                        <li><strong>HTTP/1.1 :</strong> La version du protocole utilisé.</li>
+                        <li><strong>200 :</strong> Le code d'état numérique (Status Code) indiquant que la requête a réussi.</li>
+                        <li><strong>OK :</strong> La phrase de raison (Reason Phrase) décrivant le code de statut.</li>
+                    </ol>
+                </li>
+
+                <li>
+                    <h3>Quel est le nom du serveur Web ?</h3>
+                    <p>Le serveur utilisé est <strong>Apache</strong> (indiqué par le champ <code>Server: Apache</code>).</p>
+                </li>
+
+                <li>
+                    <h3>À quoi correspond la valeur de Content-Type ?</h3>
+                    <p>Elle indique le type MIME du document. Ici, <code>text/html</code> signifie que le contenu est une page HTML encodée en <code>UTF-8</code>.</p>
+                </li>
+
+                <li>
+                    <h3>À quoi correspond la valeur de Content-Length ?</h3>
+                    <p>Elle indique la taille du corps de la réponse (la page HTML elle-même) en <strong>octets</strong>. Ici, le fichier pèse 2998 octets.</p>
+                </li>
+
+                <li>
+                    <h3>Faites la même analyse mais avec la requête GET /ens/toto.txt HTTP/1.0</h3>
+                    <p>Le serveur répond par un code <strong>404 Not Found</strong>. Cela signifie que la connexion au serveur a réussi, mais que la ressource spécifique demandée n'existe pas sur le serveur.</p>
+                    <pre>ngalulakabongo@pcader102-10:~$ nc -C monge.univ-mlv.fr 80
+GET /ens/toto.txt HTTP/1.0
+
+HTTP/1.1 404 Not Found
+Date: Fri, 03 Apr 2026 08:31:35 GMT
+Server: Apache
+Connection: close
+Content-Type: text/html
+
+&lt;HTML&gt;&lt;TITLE&gt;404 Not Found&lt;/TITLE&gt;&lt;/HTML&gt;</pre>
+                </li>
+
+                <li>
+                    <h3>Enfin, faites la même analyse avec la requête GET /index.html HTTP/1.0. À quoi correspond la valeur de Location ?</h3>
+                    <p>Le serveur répond par un code <strong>302 Found</strong> (redirection temporaire). La valeur de <code>Location</code> (ici <code>http://ligm.univ-eiffel.fr/index.html</code>) indique l'URL vers laquelle le navigateur doit automatiquement se diriger pour trouver la page.</p>
+                    <pre>ngalulakabongo@pcader102-10:~$ nc -C monge.univ-mlv.fr 80
+GET /index.html HTTP/1.0
+
+HTTP/1.1 302 Found
+Date: Fri, 03 Apr 2026 08:32:17 GMT
+Server: Apache
+Location: http://ligm.univ-eiffel.fr/index.html
+Content-Length: 291
+Connection: close
+Content-Type: text/html; charset=iso-8859-1</pre>
+                </li>
+
+                <li>
+                    <h3>Que se passe-t-il lorsque je lance la commande wget monge.univ-mlv.fr/index.html ? Expliquer la signification des lignes.</h3>
+                    <p>La commande <code>wget</code> télécharge automatiquement le fichier. Les étapes affichées sont :</p>
+                    <ol>
+                        <li><strong>Résolution de l'adresse :</strong> Le client cherche l'IP associée au nom.</li>
+                        <li><strong>Connexion :</strong> Établissement de la liaison sur le port 80.</li>
+                        <li><strong>Requête HTTP envoyée :</strong> Le client demande le fichier.</li>
+                        <li><strong>Réponse du serveur :</strong> Réception du code (302 puis 200 après redirection).</li>
+                        <li><strong>Sauvegarde :</strong> Le contenu est écrit dans un fichier local nommé <code>index.html</code>.</li>
+                    </ol>
+                    <pre>david@Davs:~$ wget monge.univ-mlv.fr
+--2026-04-03 20:22:15--  http://monge.univ-mlv.fr/
+Resolving monge.univ-mlv.fr (monge.univ-mlv.fr)... 193.55.61.150
+Connecting to monge.univ-mlv.fr (monge.univ-mlv.fr)|193.55.61.150|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: http://ligm.univ-eiffel.fr/ [following]
+--2026-04-03 20:22:15--  http://ligm.univ-eiffel.fr/
+Resolving ligm.univ-eiffel.fr (ligm.univ-eiffel.fr)... 193.55.61.150
+Reusing existing connection to monge.univ-mlv.fr:80.
+HTTP request sent, awaiting response... 302 Found
+Location: https://ligm.univ-eiffel.fr// [following]
+--2026-04-03 20:22:15--  https://ligm.univ-eiffel.fr//
+Connecting to ligm.univ-eiffel.fr (ligm.univ-eiffel.fr)|193.55.61.150|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: 'index.html'</pre>
+                </li>
+            </ol>
+        </section>
+
+        <section class="conclusion-section">
+            <h2>Conclusion</h2>
+            <div class="card-conclusion">
+                <p>
+                    Ce TP m'a permis de comprendre concrètement le fonctionnement des requêtes HTTP et le rôle crucial de la résolution DNS dans la navigation web. 
+                    J'ai appris à interpréter les codes de statut (200, 302, 404) et à utiliser des outils en ligne de commande comme <code>nc</code> et <code>host</code> pour interroger des serveurs directement. 
+                    La principale difficulté a été d'appréhender la syntaxe rigoureuse des en-têtes HTTP, mais la pratique m'a aidé à surmonter ce point. 
+                    Il me reste encore à approfondir la gestion des connexions sécurisées (HTTPS) et je prévois de retravailler la structure des types MIME pour mieux comprendre comment les navigateurs traitent les différents formats de fichiers.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="centered">Compte-rendu de TP7 - David Ngalula Kabongo - Université Gustave Eiffel - 2026</p>
+    </footer>
+</body>
+
 </html>
