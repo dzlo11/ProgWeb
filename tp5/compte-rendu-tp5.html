@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compte-rendu du tp4</title>
+        <link rel="stylesheet" href="compte-rendu.css">
+        
+    </head>
+
+    <body>
+        <h1 class="centered">Compte-rendu de tp5</h1>
+
+        <div class="right">
+            <p>NGALULA KABONGO David <br>
+              Groupe TP 11 <br>
+              L1 Math-Info Université Gustave Eiffel <br>
+            </p>
+        </div>
+
+        <section>
+          <h2>Exercice 1 &nbsp;: Seuls ceux qui passent les tests compteront !&nbsp;</h2>
+
+          <ol>
+            <li>
+              <h3>Écrire une fonction estPair qui, étant donné un entier k, renvoie true si k est pair, et false sinon.</h3>
+                <p>Voici la fonction estPair :</p>
+
+<pre><code>"use strict";
+  const estPair = function(k) {
+    return k % 2 === 0;
+  };
+</code></pre>
+
+              <p>Assez simple juste besoin de savoir que k % 2 === 0 signifie que k est divisible par 2.</p>
+            </li>
+            
+            <li>
+              <h3>Écrire une fonction estCarré qui, étant donné un entier k, renvoie true si k est un carré parfait, et false sinon.</h3>
+                <p>Voici la fonction estCarré :</p>
+
+<pre><code>"use strict";
+  const estCarré = function(k) {
+    if (k &lt; 0) {
+      return false;
+    }
+    const racine = Math.floor(Math.sqrt(k));
+    return racine * racine === k;
+  };
+</code></pre>
+
+              <p>Il faut d'abord vérifier que k n'est pas négatif, car les carrés parfaits sont tous positifs ou nuls. <br>
+                Ensuite, on calcule la racine carrée de k, on arrondit à l'entier inférieur avec Math.floor, et on vérifie si le carré de cette racine est égal à k. <br>
+                Si c'est le cas, alors k est un carré parfait.</p>
+            </li>
+
+            <li>
+              <h3>Écrire une fonction comptePairs qui, étant donné un entier n strictement positif, énumère les entiers de 1 à n, compte combien d'entre eux sont pairs, et renvoie le résultat de son décompte.</h3>
+                <p>Voici la fonction comptePairs :</p>
+
+<pre><code>"use strict";
+  const comptePairs = function(n) {
+    let count = 0;
+    for (let i = 1; i &lt;= n; i++) {
+      if (estPair(i)) {
+        count++;
+      }
+    }
+    return count;
+  };
+</code></pre>
+
+              <p>On initialise un compteur à 0, puis on parcourt tous les entiers de 1 à n. 
+                Pour chaque entier i, on vérifie s'il est pair en utilisant la fonction estPair.
+                Si c'est le cas, on incrémente le compteur. 
+                Enfin, on retourne le nombre total de pairs trouvés.</p>
+            </li>
+
+            <li>
+              <h3>Écrire une fonction compteCarrés qui, étant donné un entier n strictement positif, énumère les entiers de 1 à n, 
+                compte combien d'entre eux sont des carrés parfaits, et renvoie le résultat de son décompte.</h3>
+                <p>Voici la fonction compteCarrés :</p>
+
+<pre><code>"use strict";
+  const compteCarrés = function(n) {
+    let count = 0;
+    for (let i = 1; i &lt;= n; i++) {
+      if (estCarré(i)) {
+        count++;
+      }
+    }
+    return count;
+  };
+</code></pre>
+
+              <p>Cette fonction est similaire à comptePairs, mais elle utilise la fonction estCarré pour vérifier si chaque entier i est un carré parfait. 
+                On incrémente le compteur chaque fois qu'on trouve un carré parfait, et on retourne le total à la fin.</p>
+            </li>
+          
+            <li>
+              <h3>Comment écrire la fonction compteCarrés2, qui fait la même chose que compteCarrés, à partir des fonctions test et estCarré ? 
+                Cette réécriture est censée prendre une seule ligne de code.</h3>
+                <p>Voici la fonction compteCarrés2 :</p>
+
+<pre><code>"use strict";
+  const compteCarrés2 = compte(estCarré);
+</code></pre>
+
+              <p>Un peu compliqué au debut vue que je n'avait pas bien compris comment faire cela en une ligne. Mais maintenant je comprends bien comment cela fonctionne. <br>
+                j'avais pas besoin de mettre "estCarré(i)" mais juste "estCarré" car la fonction compte va s'occuper de faire le travail de vérifier chaque entier i de 1 à n en utilisant la fonction estCarré comme test.
+              </p>
+            </li>
+
+            <li>
+              <h3>Écrire la fonction compte.
+                Bien vérifier que les fonctions comptePairs2 et compteCarrés2 réécrites à partir de la fonction compte se comportent comme les fonctions comptePairs et compteCarrés.</h3>
+                <p>Voici la fonction compte :</p>
+
+<pre><code>"use strict";
+  const compte = function(test) {
+    return function(n) {
+      let count = 0;
+      for (let i = 1; i &lt;= n; i++) {
+        if (test(i)) {
+          count++;
+        }
+      }
+      return count;
+    }
+  };
+</code></pre>
+
+              <p>La fonction compte est une fonction d'ordre supérieur qui prend une fonction test en argument et retourne une nouvelle fonction. 
+                Cette nouvelle fonction prend un entier n en argument, énumère les entiers de 1 à n, et utilise la fonction test pour vérifier si chaque entier satisfait la condition spécifiée par test. <br>
+                Si c'est le cas, elle incrémente un compteur. 
+                Enfin, elle retourne le nombre total d'entiers qui ont satisfait la condition.</p>
+            </li>
+
+            <li>
+              <h3>Écrire, en une seule ligne de code, une fonction compte1mod3 qui, étant donné un entier n strictement positif, énumère les entiers de 1 à n, compte combien d'entre eux sont congrus à 1 modulo 3, et renvoie le résultat de son décompte.</h3>
+                <p>Voici la fonction compte1mod3 :</p>
+
+<pre><code>"use strict";
+  const compte1mod3 = compte(i => i % 3 === 1);
+</code></pre>
+
+              <p>Cette fonction utilise la fonction compte avec un test qui vérifie si un entier i est congru à 1 modulo 3, c'est-à-dire si le reste de la division de i par 3 est égal à 1. 
+                En utilisant une fonction fléchée (i => i % 3 === 1), on peut définir ce test en une seule ligne de code.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Exercice 2 : Tableaux</h2>
+
+          <ol>
+            
+            <li>
+              <h3>Expliquez ce que fait le code sans pour autant regarder le code de graph.js. <br>
+                Note : pour tester, vous devez récupérer aussi le fichier graph.js et le placer correctement par rapport au fichier exo2.html que vous venez de récupérer (Une piste pour le trouver : regarder la source…)</h3>
+                <p>Le code exo2.html affiche plusieurs graphiques de tableaux d'entiers. Chaque tableau est affiché dans un div séparé, avec un titre indiquant ce que fait le graphique. 
+                  Le fichier graph.js contient la logique pour dessiner les graphiques.</p>
+            </li>
+
+            <li>
+              <h3>La suite de cet exercice consiste à compléter chaque question en écrivant un code à l'endroit des 'TODO'. <br>
+                On cherche à écrire une fonction addThree qui prend en paramètre un tableau et retourne un nouveau tableau qui contient le même nombre de cases que le tableau pris en paramètre et dont les valeurs des cases est la valeur de la case de même index du tableau pris en paramètre augmentée de trois. <br>
+                Par exemple, si le tableau initial contient <strong>[11, 21, 5, -13, 2, 12, 19, 5]</strong> , alors le résultat de l'appel à addThree doit être un nouveau tableau avec les valeurs [14, 24, 8, -10, 5, 15, 22, 8]. <br>
+                Si cela vous aide, vous pouvez dans un premier temps écrire l'algorithme en pseudo-code, puis dans un deuxième temps, transformez le pseudo-code en JavaScript. <br>
+                 <strong class = "important">Attention !</strong> Votre fonction ne doit pas modifier le tableau d'origine.</h3>
+              <p>Voici la fonction addThree :</p>
+
+<pre><code>"use strict";
+  const addThree = function(array) {
+    const newArray = [];
+    for (let i = 0; i &lt; array.length; i++) {
+      newArray.push(array[i] + 3);
+    }
+    return newArray;
+  };
+</code></pre>
+              <p>J'ai donc crée une nouvelle table avec les valeurs augmentées de trois. Pas besoin de mettre le " array.length-1 " vue qu'il est inclus dans la condition de la boucle for.</p>
+            </li>
+
+            <li>
+              <h3>En fait, le code que l'on a écrit n'est pas très générique : si l'on doit ajouter 4 à chaque case ou alors multiplier la valeur des cases par 2, il faut dupliquer le code avec un copier/coller et changer l'opération à effectuer. <br>
+                Comme on n'est pas des barbares, on se dit que l'on pourrait réutiliser la même fonction pour tous ces cas. On va pour cela créer une fonction intermédiaire. <br>
+                Donc dans un premier temps, écrivez une fonction applyForEachElement qui prend deux arguments (un tableau et une fonction) et qui, pour chaque élément du tableau, appelle la fonction en lui donnant l'élement en guise de paramètre. <br>
+                Une fois que applyForEachElement marche, écrivez une nouvelle version de addThree, addThree2 qui va utiliser applyForEachElement, vérifiez que le résultat est identique.</h3>
+              <p>Voici la fonction applyForEachElement :</p>
+
+<pre><code>"use strict";
+  const applyForEachElement = function(array, f) {
+    for (let i = 0; i &lt; array.length; i++) {
+      f(array[i]);
+    }
+  };
+
+  // Voici la fonction addThree2 qui utilise applyForEachElement :
+  const addThree2 = function(array) {
+    const newArray = [];
+    applyForEachElement(array, element => {
+      newArray.push(element + 3);
+    });
+    return newArray;
+  };
+</code></pre>
+              <p>La fonction applyForEachElement parcourt chaque élément du tableau et applique la fonction f à cet élément. 
+                La fonction addThree2 utilise applyForEachElement pour ajouter 3 à chaque élément du tableau et stocker les résultats dans un nouveau tableau newArray, qui est ensuite retourné. 
+                Assez compliqué j'ai galeré un peu a savoir comment faire que addThree puisse être réutilisée avec d'autres opérations.</p>
+            </li>
+
+            <li>
+              <h3>Il y a toutes les chances que votre fonction applyForEachElement contienne une boucle for. Cependant, on peut éviter d'écrire cette boucle explicitement, en utilisant la méthode forEach sur un tableau : <br>
+                écrire la fonction applyForEachElement2 pour utiliser la méthode forEach, puis l'utiliser pour écrire une nouvelle version de addThree, nommée addThree3.</h3>
+                <p>Voici la fonction applyForEachElement2 :</p>
+<pre><code>"use strict";
+  const applyForEachElement2 = function(array, f) {
+    array.forEach(element => {
+      f(element);
+    });
+  };
+
+  // Voici la fonction addThree3 qui utilise applyForEachElement2 :
+  const addThree3 = function(array) {
+    const newArray = [];
+    applyForEachElement2(array, element => {
+      newArray.push(element + 3)
+    });
+    return newArray;
+  };
+</code></pre>
+              <p>La fonction addThree3 utilise applyForEachElement2 pour appliquer l'opération d'ajout de 3 à chaque élément du tableau et retourne le nouveau tableau.
+                La méthode forEach est uen méthode intégrée aux tableaux en JavaScript qui permet d'éxécuter une function pour chaque élément du tableau sans avoir besoin d'écrire une boucle for explicite.
+                J'ai trouvé cela simple j'avais juste a remplacer la bouble for par la méthode forEach.</p>
+              </li>
+
+              <li>
+                <h3>Que fait la méthode map si on l'appelle sur un tableau ? <br>
+                  Comment peut-on l'utiliser pour écrire addThree ? <br>
+                  Écrivez addThree en utilisant la méthode map et vérifiez que l'on obtient le même résultat que précédemment.</h3>
+                  <p>La méthode map applique une fonction à chaque élément d'un tableau et retourne un nouveau tableau contenant les résultats de l'application de la fonction sur chauque élément.
+                    Voici la fonction addThree4 qui utilise la méthode map :</p>
+<pre><code>"use strict";
+  const addThree4 = function(array) {
+    return array.map(element => element + 3);
+  };
+</code></pre>
+              <p>La fonction addThree4 utilise la méthode map pour ajouter 3 à chaque élément du tableau et retourne le nouveau tableau résultant. 
+                C'est une solution plus concise et plus élégante que les versions précédentes, car elle évite d'avoir à créer un tableau intermédiaire et à utiliser une boucle ou une fonction d'ordre supérieur pour appliquer l'opération à chaque élément.</p>
+              </li>
+
+              <li>
+                <h3>On souhaite afficher les valeurs du tableau trié en utilisant la méthode sort sur un tableau.
+                  Rappelez en quoi la méthode sort est différente des méthodes map et filter.
+                  Écrivez la fonction sortedArray qui renvoie un nouveau tableau avec les valeurs triées (Attention ! Le tableau pris en paramètre ne doit pas être modifié).</h3>
+                  <p>La méthode <code>sort</code> est différente de <code>map</code> et <code>filter</code> car elle modifie le tableau d'origine ("en place") par défaut, alors que les autres retournent un nouveau tableau. 
+                    De plus, <code>sort</code> trie par défaut les éléments sous forme de chaînes de caractères, il faut donc une fonction de comparaison pour les nombres.<br>
+                    Voici la fonction sortedArray :</p>
+<pre><code>"use strict";
+  const sortedArray = function(array) {
+  return [...array].sort((a, b) => a - b);
+};
+</code></pre>
+              </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Exercice 3 : MinMax, génération aléatoire et calcul rapide</h2>
+          <ol>
+            <li>
+              <h3>On cherche à écrire une fonction minmax qui prend en paramètre un tableau, calcule le minimum et le maximum de ce tableau et renvoie les deux valeurs sous forme d'un nouveau tableau à 2 cases dont la première case est le minimum et la seconde case est le maximum. <br>
+                Pour des questions d'efficacité, on veut que le calcul du minimum et du maximum soit fait lors du même parcours du tableau. <br>
+                Écrivez, dans un premier temps, l'algorithme que vous allez implanter en pseudo-code, puis écrivez le code JavaScript correspondant. <br>
+                Note : il existe les fonctions Math.min et Math.max.</h3>
+                <p>Voici la fonction minmax :</p>
+
+<pre><code>"use strict";
+  const minmax = fucntion(array) {
+    if (array.length === 0) {
+      return [undefined, undefined];
+    }
+    let min = array[0];
+    let max = array[0];
+    for (let i = 1; array.length; i++) {
+      if (array[i] &lt; min) {
+        min = array[i];
+      }
+      if (array[i] &gt; max) {
+        max = array[i];
+      }
+    }
+    return [min, max];
+  };
+</code></pre>
+
+              <p>La fonciton minmax est une fonction assez efficace en temps, car elle réalise le calcul du minimum et du maximum en un seul parcours de tableau.</p>
+            </li>
+
+            <li>
+              <h3>Au lieu d'écrire la boucle à la main, on peut vouloir directement utiliser l'opérateur spread (…) pour calculer le minimum et le maximum du tableu. <br>
+                Écrivez le code de minmax2 qui utilise cet opérateur. Si l'on utilise cette fonction, combien de fois aura-t-on parcouru le tableau ? Cela satisfait-il les contraintes posées en début d'exercice ?</h3>
+                <p>Voici la fonction minmax2 :</p>
+
+<pre><code>"use strict";
+  const minmax2 = function(array) {
+    return [Math.min(...array), Math.max(...array)];
+  };
+</code></pre>
+
+              <p>La fonction minmax2 utilise l'opérateur spread pour passer tous les éléments du tableau à Math.min et Math.max. 
+                Cela signifie que le tableau est parcouru deux fois : une fois pour calculer le minimum et une fois pour calculer le maximum. 
+                Cela ne satisfait pas les contraintes posées en début d'exercice, car on veut éviter de parcourir le tableau plus d'une fois.</p>
+            </li>
+
+            <li>
+              <h3>On souhaite pouvoir mélanger les cases d'un tableau dans le but de tester plus de combinaisons.
+                L'idée de l'algorithme de mélange est la suivante : pour chaque case i, on tire un nombre aléatoire entre i et n - 1 (n étant le nombre de cases du tableau) et l'on va permuter (échanger si vous préférez) la case courante avec la case à l'index du nombre que l'on vient de tirer aléatoirement. <br>
+                Si l'on fait cela pour toutes les cases, le tableau sera mélangé (et on peut même s'offrir la joie de démontrer que ce tableau est bien échantillonné uniformément au hasard parmi tous les tableaux possibles). <br>
+                Écrivez dans un premier temps une fonction swap qui permet d'échanger deux cases du tableau. <br>
+                Puis écrivez la fonction randomizeArray qui mélange les valeurs du tableau pris en paramètre. <br>
+                Note : tirer un nombre aléatoire entre 0 (inclus) et n (exclu) en JavaScript se fait avec la fonction suivante :</h3>
+              <p>Voici la fonction swap : </p>
+
+<pre><code>"use strict";
+  const swap = function(array, i, j) {
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  };
+</code></pre>
+
+              <p>Voici la fonction randomizeArray :</p>
+
+<pre><code>"use strict";
+  const random = n =&gt; Math.floor(n * Math.random());
+  const randomizeArray = function(array) {
+    for (let i = 0; i &lt; array.length; i++) {
+      const j = i + random(n - i);
+      swap(array, i, j);
+    }
+  };
+</code></pre>
+
+              <p>La fonction randomizeArray parcourt le tableau.
+                Pour chaque position i, on choisit un indice aléatoire entre i et la fin du tableau.
+                Puis on échange les deux cases grâce à la fonction swap.
+                Cela permet de mélanger correctement le tableau.</p>
+            </li>
+
+            <li>
+              <h3>Il est possible de diminuer le nombre de tests faits par la fonction minmax. En effet, si au lieu de faire évoluer le min et le max pour chaque case du tableau, on commence par lire deux valeurs de cases consécutives, regarder quelle est la plus grande puis la comparer avec le max, dans ce cas, la valeur la plus petite ne doit être comparée qu'avec le min donc chaque case n'a pas besoin d'être comparée et avec le max et avec le min. <br>
+                Écrivez dans un premier temps l'algorithme en pseudo-code. <br>
+                Note : pour éviter de dupliquer le code, on peut écrire le code si une valeur est plus grande que l'autre et dans l'autre cas, permuter les valeurs (attention, les valeurs, pas les cases du tableau) pour se retrouver dans le même cas. <br>
+                Vérifiez que votre algo fonctionne que le nombre de cases soit pair ou impair.
+                Enfin, écrivez la fonction minmax3.</h3>
+              <p>Voici pseudo-code de l'agorithme : </p>
+
+<pre><code>Si le tableau est vide
+  retourner [undefined, undefined]
+
+  Initialiser min et max avec la première valeur du tableau
+
+  Pour chaque élément du tableau à partir du second
+    si l'élément est plus petit que min
+      mettre à jour min
+    si l'élément est plus grand que max
+      mettre à jour max
+
+  Retourner [min, max]
+</code></pre>
+
+              <p>Voici la fonction minmax3 :</p>
+
+<pre><code>"use strict";
+const minmax3 = function(array) {
+  if (array.length === 0) {
+    return [undefined, undefined];
+  }
+  
+  let min, max, indexDepart;
+  
+  // Si le nombre d'éléments est impair
+  if (array.length % 2 !== 0) {
+    min = array[0];
+    max = array[0];
+    indexDepart = 1;
+  } else {
+    // Si pair, on compare les deux premiers pour initialiser
+    if (array[0] &lt; array[1]) {
+      min = array[0]; max = array[1];
+    } else {
+      min = array[1]; max = array[0];
+    }
+    indexDepart = 2;
+  }
+
+  // On parcourt le reste du tableau deux par deux
+  for (let i = indexDepart; i &lt; array.length; i += 2) {
+    let a = array[i];
+    let b = array[i + 1];
+    
+    if (a &lt; b) {
+      if (a &lt; min) min = a;
+      if (b &gt; max) max = b;
+    } else {
+      if (b &lt; min) min = b;
+      if (a &gt; max) max = a;
+    }
+  }
+  return [min, max];
+};
+</code></pre>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Conclusion</h2>
+          <p>
+            Ce TP m'a permis de solidifier mes bases sur la manipulation des tableaux en JavaScript, notamment à travers l'utilisation de méthodes puissantes comme <code>map</code>, <code>filter</code> et <code>forEach</code>. 
+            J'ai mieux compris l'intérêt des fonctions d'ordre supérieur pour rendre le code plus générique et éviter la duplication. 
+            La principale difficulté a été l'implémentation de l'algorithme <code>minmax3</code>, car la gestion des paires et des indices selon la parité du tableau demande une grande rigueur logique. 
+            Bien que j'aie réussi à surmonter les erreurs de boucle initiales, je prévois de retravailler sur le passage d'arguments entre fonctions fléchées pour gagner en fluidité lors des prochains exercices. 
+            En résumé, ce travail m'a montré comment l'optimisation algorithmique peut réduire concrètement la complexité d'un programme.
+          </p>
+        </section>
+    </body>
+</html>

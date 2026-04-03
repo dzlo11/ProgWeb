@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Seuls ceux qui passent les tests compteront&nbsp;!</title>
+    <script>
+      "use strict";
+
+      /* Question 1 */
+      const estPair = function(k) {
+        return k % 2 === 0;
+      };
+
+      /* Question 2 */
+      const estCarré = function(k) {
+        if (k < 0) {
+          return false;
+        }
+        const racine = Math.floor(Math.sqrt(k));
+        return racine * racine === k;
+      };
+    
+      /* Question 3 */
+      const comptePairs = function(n) {
+        let count = 0;
+        for (let i = 1; i <= n; i++) {
+          if (estPair(i)) {
+            count++;
+          }
+        }
+        return count;
+      };
+
+      /* Question 4 */
+      const compteCarrés = function(n) {
+        let count = 0;
+        for (let i = 1; i <= n; i++) {
+          if (estCarré(i)) {
+            count++;
+          }
+        }
+        return count;
+      };
+
+      /* Question 6 */
+      const compte = function(test) {
+        return function(n) {
+          let count = 0;
+          for (let i = 1; i <= n; i++) {
+            if (test(i)) {
+              count++;
+            }
+          }
+          return count;
+        };
+      };
+
+      /* Question 5 */
+      const comptePairs2 = compte(estPair);
+      const compteCarrés2 = compte(estCarré);
+
+      /* Question 7 */
+      const compte1mod3 = compte(i => i % 3 === 1);
+    </script>
+  </head>
+
+  <body>
+    <h2>Seuls ceux qui passent les tests compteront&nbsp;!</h2>
+  </body>
+</html>

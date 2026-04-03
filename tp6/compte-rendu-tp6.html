@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compte-rendu du tp4</title>
+        <link rel="stylesheet" href="compte-rendu.css">
+        
+    </head>
+
+    <body>
+        <h1 class="centered">Compte-rendu de tp5</h1>
+
+        <div class="right">
+            <p>NGALULA KABONGO David <br>
+              Groupe TP 11 <br>
+              L1 Math-Info Université Gustave Eiffel <br>
+            </p>
+        </div>
+
+        <section>
+          <h2>Exercice 1 &nbsp;: Memory&nbsp;</h2>
+
+            <ol start="2">
+
+              <li>
+                <h3>Écrivez le code de la fonction <code>create</code> pour stocker le tableau des sources des images et l'image de dos de carte.
+                  Écrivez ensuite le code de la méthode <code>build</code> afin que le nombre d'images soit affiché à l'intérieur de la balise div prise en paramètre.
+                  Note : les élements du DOM possèdent un attribut <code>innerHTML</code>.</h3>
+                  <p>On utilise un objet <code>game</code> pour encapsuler les données. La méthode <code>create</code> initialise les propriétés, et <code>build</code> modifie le contenu HTML du conteneur via <code>innerHTML</code>. <br>
+                    Voici l'initialisation de l'objet <strong>game</strong> :</p>
+
+<pre><code>const game = {};
+
+game.create = function(images, blank) {
+  game.mesCartes = images;
+  game.mesCartesDos = blank; 
+};
+
+game.build = function(div) {
+  let nombre = game.mesCartes.length;
+  div.innerHTML = "Le jeu contient " + nombre + " images.";
+};</code></pre>
+              </li>
+
+              <li>
+                <h3>Pour notre jeu de memory, nous allons créer des paires de cartes, une paire par image. Pour stocker ces cartes, on va créer un tableau <code>cards</code> qui va contenir pour chaque carte l'index de l'image correspondante.
+                  Dans un vrai memory, ce tableau des index des images est permuté lors de la création du jeu ; sinon, ce n'est pas très drole. Pour l'instant, nous allons utiliser la fonction <code>shuffleCards</code> qui vous a été donnée car cela sera plus facile pour la mise au point du programme.
+                  Que fait la fonction <code>shuffleCards</code>, et en quoi cela aide-t-il pour la mise au point du programme ?</h3>
+                
+                <p>La fonction <code>shuffleCards</code> génère un tableau contenant deux fois chaque index d'image (0, 0, 1, 1, 2, 2, etc.). Pour l'instant, elle place les paires côte à côte sans les mélanger.
+                  Cela aide énormément pour la <strong>mise au point</strong> car nous connaissons à l'avance l'emplacement des paires. Si nous cliquons sur la carte 0 et la carte 1, nous savons qu'elles doivent correspondre. </p>
+
+<pre><code>const shuffleCards = function(length) {
+  let cards = [];
+  for(let i = 0; i &lt; length; i++) {
+    cards.push(i); // Ajoute le premier exemplaire de l'image
+    cards.push(i); // Ajoute le deuxième exemplaire pour créer la paire
+  }
+  return cards;
+};</code></pre>
+              </li>
+
+              <li>
+                <h3>Modifiez la fonction create pour que game contienne également un tableau positions fourni par la fonction shuffleCards. 
+                  Modifiez ensuite la méthode build pour afficher autant de cartes que de cases du tableau cards qu'a renvoyé la fonction shuffleCards (ici, 16 cartes). 
+                  Chaque carte sera représentée par un div contenant une image (voir le CSS de memory.html). Pour l'instant, chaque carte affichera le même dos d'image.
+                  Rappel : l'élement DOM correspondant à une image possède une propriété src.</h3>
+                  <p>Voici le modification apporté dans les deux fonctions : </p>
+
+<pre><code>game.create = function(images, blank) {
+  game.mesCartes = images;
+  game.mesCartesDos = blank; 
+  game.positions = shuffleCards(images.length); // On récupère le tableau des 16 positions (0,0,1,1...)
+};
+
+game.build = function(div) {
+  for (let i = 0; i &lt; game.positions.length; i++) {
+    const conteneurCartes = document.createElement("div");
+    const imageCartes = document.createElement("img");
+    
+    imageCartes.src = game.mesCartesDos; // Toutes les cartes affichent le dos au début
+    imageCartes.numero = i; // On stocke l'index de la carte
+    
+    conteneurCartes.appendChild(imageCartes);
+    div.appendChild(conteneurCartes);
+  }
+};</code></pre>
+              </li>
+
+              <li>
+                <h3>On souhaite ajouter une fonction permettant de savoir lorsque l'utilisateur a cliqué sur une carte.
+                  Note : tout élément est être muni d'une fonction onclick qui permet d'exécuter une fonction quand on clique sur la zone correspondant à cette balise. 
+                  Le code JavaScript à utiliser pour munir un élément elt d'une fonction fun() ou bien fun(event) qui sera déclenchée lors d'un clic sera alors <code>elt.onclick = fun;</code></h3>
+                  <p>Pour identifier la carte, nous utilisons la propriété <code>.numero</code> que nous avons attachée à l'objet image dans la boucle for. 
+                    Dans la fonction <code>onclick</code>, le mot-clé <code>this</code> désigne l'élément cliqué, nous permettant d'accéder à <code>this.numero</code>.</p>
+
+<pre><code>imageCartes.onclick = function() {
+  console.log("Index de la carte cliquée : " + this.numero);
+  console.log("Numéro du Lego correspondant : " + game.positions[this.numero]);
+};</code></pre>
+              </li>
+
+              <li>
+                <h3>On souhaite maintenant pouvoir afficher l'image correspondant à une carte lorsque l'on clique sur la carte.
+                  Comment faire pour que le tableau des sources des images soit accessible lors d'un clic ? Et pour que les images effectivement affichées changent de source si nécessaire ?
+                  Implantez votre solution pour que, lorsque l'on clique sur une carte, l'image correspondante s'affiche.</h3>
+                <p>Le tableau des sources est accessible via l'objet global game.mesCartes. Pour changer l'image, on modifie la propriété .src de this (l'élément cliqué) 
+                  en utilisant le numéro récupéré dans game.positions.</p>
+
+<pre><code>imageCartes.onclick = function() {
+  // On récupère le numéro du lego correspondant à cette position
+  let numLego = game.positions[this.numero];
+  
+  // On change la source de l'image cliquée pour afficher le Lego
+  this.src = game.mesCartes[numLego];
+  
+  console.log("Clic sur carte index : " + this.numero);
+  console.log("Numéro du Lego correspondant : " + numLego);
+};</code></pre>
+              </li>
+
+              <li>
+                <h3>Il faut maintenant implanter la mécanique du jeu.
+                    Comme on découvre les cartes, une par une, il faut se souvenir de la carte précédente (si elle existe) pour savoir si le jeu est dans l'un des états suivants :</h3>
+                    <ol class="soustitre">
+                      <li>on doit découvrir 2 cartes ;</li>
+                      <li>on doit découvrir 1 carte (l'autre est déjà connue) ;</li>
+                      <li>deux cartes ont été découvertes.</li>
+                    </ol>
+                    <h3>Sachant que l'on appelle selection la carte dont on se souvient, écrivez en pseudo-code l'algorithme qui prend en paramètre la carte sur laquelle on vient de cliquer et qui implante la mécanique de jeu.
+                    Implantez ensuite votre algorithme en JavaScript.
+                    Comment faire pour ne pas prendre en compte les cartes déjà retournées (il y a deux cas) ?
+                    Modifiez votre programme en conséquence.</h3>
+                    <p>Voici ce qui a été ajouté dans les deux objets : </p>
+
+<pre><code>// Dans la fonction create, juste après positions : 
+  // QUESTION 7 (on crée la mémoire vide)
+  game.selections = null;
+
+// Juste après la premier bocle for : 
+// Sécurité Ne rien faire si la carte est déjà retournée
+  if (this.src.indexOf(game.mesCartesDos) === -1) {
+    return;
+  }
+// Dans la fonction build, à l'intérieur de onclick :
+imageCartes.onclick = function() {
+  ...// le code des questions precedentes
+  // Affichage de la carte
+  this.src = game.mesCartes[game.positions[this.numero]];
+
+  if (game.selections === null) {
+    // PREMIER CLIC
+    game.selections = this;
+  } else {
+    // DEUXIÈME CLIC
+    let carte1 = game.selections;
+    let carte2 = this;
+
+    if (game.positions[carte1.numero] === game.positions[carte2.numero]) {
+      // PAIRE TROUVÉE : On laisse tel quel
+    } else {
+      // PAS UNE PAIRE 
+      carte1.src = game.mesCartesDos;
+      carte2.src = game.mesCartesDos;
+    }
+    game.selections = null; // On vide la mémoire pour la paire suivante
+  }
+};
+</code></pre>
+
+              </li>
+
+              <li>
+                <h3>Si les images des deux cartes ne sont pas identiques, on souhaite avoir le temps de voir la face de la seconde carte avant de les retourner face cachée. Pour cela, le plus simple est d'attendre 500 ms avant de retourner les cartes. Comment écrire cela en JavaScript ?
+                  Note : attention à ce que vous appelez this !</h3>
+                  <p>En effet On utilise setTimeout. Il faut faire attention au this : à l'intérieur du setTimeout, this ne représente plus la carte. 
+                    C'est pour cela qu'on utilise des variables intermédiaires (carte1, carte2).</p>
+
+<pre><code> // a l'interieur du deuxième else de la question 7
+  setTimeout(function() {
+  carte1.src = game.mesCartesDos;
+  carte2.src = game.mesCartesDos;
+}, 500);</code></pre>
+              </li>
+
+              <li>
+                <h3>Enfin, modifiez shuffleCards pour que le tableau des cartes soit mélangé de façon aléatoire (comme dans la question 1 de l'exercice 3 du TP4).</h3>
+                <p>Voici les modification apportées à la fonction shuffleCards : </p>
+
+<pre><code>const shuffleCards = function(length) {
+  let cards = [];
+
+  for(let i = 0; i &lt; length; i++) {
+    cards.push(i);
+    cards.push(i);
+  } 
+
+  // on réalise le tri aléatoire 
+  for (let i = cards.length - 1; i &gt; 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // On choisit un index au hasard entre 0 et i
+    
+    // On échange l'élément à la position i avec celui à la position j
+    let temporaire = cards[i];
+    cards[i] = cards[j];
+    cards[j] = temporaire;
+  }
+
+  return cards; 
+};</code></pre>
+              </li>
+            </ol>
+        </section>
+
+        <section>
+          <h2>Conclusion</h2>
+          <p>Ce TP m'a permis de maîtriser la manipulation du DOM et la gestion d'états via un objet JavaScript structuré. 
+            J'ai appris à utiliser des propriétés personnalisées et le mot-clé this pour identifier des éléments cliqués, tout en gérant l'affichage dynamique des images. 
+            La principale difficulté a été la mise en place de la logique de comparaison des paires et l'usage de setTimeout. 
+            En conclusion, ce projet a renforcé ma compréhension de l'interaction entre la logique algorithmique et l'interface utilisateur.</p>
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Le lièvre et la tortue</title>
+        <script>
+            "use strict";
+                const uniforme = function(borne) {
+                    return Math.floor(Math.random()* borne) + 1 ;// Génère un nombre aléatoire entre 1 et 'borne' (inclus) 
+                };
+                uniforme(20);
+
+                const étape = function() {
+                    const n = uniforme(20);
+                    if (n <= 14) {
+                        return [0, n];
+                    }
+                    else {
+                        return [n, 0];
+                    }
+                };
+                étape();
+
+                const course = function(L) {
+                    let positionLièvre = 0;
+                    let positionTortue = 0;
+                    while (positionLièvre < L && positionTortue < L) {
+                        const resultatEtape = étape();
+                        positionLièvre += resultatEtape[0];
+                        positionTortue += resultatEtape[1];
+                    }
+                    if (positionLièvre >= L) {
+                        return "lièvre";
+                    }
+                    return "tortue";
+                    }
+
+                console.log(course(100));
+                
+                const simulation = function(nombreCourses, longueurCourse) {
+                    let victoireLièvre = 0;
+                    let victoireTortue = 0;
+                    for (let i = 0; i < nombreCourses; i++) {
+                        const gagnant = course(longueurCourse);
+                        if (gagnant === "lièvre") {
+                            victoireLièvre = victoireLièvre + 1;
+                        }
+                        else {
+                            victoireTortue = victoireTortue + 1;
+                        }
+                    }
+                    console.log("Le lièvre a gagné " + victoireLièvre + " fois.");
+                    console.log("La tortue a gagné " + victoireTortue + " fois.");
+                }
+                simulation(10000, 5000);
+        </script>
+    </head>
+
+    <body>
+        <h2>Le lièvre et la tortue</h2>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Mon tout premier script</title>
+  <script>
+   "use strict";
+   /* Question 1 */
+   const sumSquares = function(n) {
+     let sum = 0;
+     for (let i = 0; i <= n; i++) {
+       sum += i * i;
+     }
+     return sum;
+   };
+   // Écrire les tests ici.
+   //console.log(sumSquares(3)); 
+   //console.log(sumSquares(10)); 
+   //console.log(sumSquares(10000000)); 
+   //console.log(sumSquares(100000000)); 
+
+   /* Question 2 */
+   const silent = function(b) {
+     return b;
+   };
+   const verbose = function(b) {
+     console.log(b);
+     return b;
+   };
+   const question2 = function() {
+     console.log("Test n°2.1");
+     console.log(silent(true) && silent(true) && silent(false) && silent(false));
+     console.log("Test n°2.2");
+     console.log(silent(true) || silent(true) || silent(false) || silent(false));
+     console.log("Test n°2.3");
+     console.log(verbose(true) && verbose(true) && verbose(false) && verbose(false));
+     console.log("Test n°2.4");
+     console.log(verbose(true) || verbose(true) || verbose(false) || verbose(false));
+     console.log("Test n°2.5");
+     silent(true) && silent(true) && silent(false) && silent(false);
+     console.log("Test n°2.6");
+     silent(true) || silent(true) || silent(false) || silent(false);
+     console.log("Test n°2.7");
+     verbose(true) && verbose(true) && verbose(false) && verbose(false);
+     console.log("Test n°2.8");
+     verbose(true) || verbose(true) || verbose(false) || verbose(false);
+   };
+    //question2();
+   
+   /* Question 3 */
+   const double = function(a) {
+     return a + a;
+   };
+   const question3 = function() {
+     console.log("Test n°3.1");
+     console.log(double(3));
+     console.log("Test n°3.2");
+     console.log(double("3"));
+     console.log("Test n°3.3");
+     console.log(double(3+3+"3"));
+   };
+    question3();
+  </script>
+ </head>
+ <body>
+  <h2>Premier pas en JavaScript</h2>
+ </body>
+</html>

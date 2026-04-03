@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    }
+h1 {
+    font-size: 24pt;
+    }
+h2 {
+    font-size: 18pt;
+    color: navy;
+   }
+h3 {
+    font-size: 16pt;
+    }
+.right {
+    text-align: right;
+    }
+.centered {
+    text-align: center;
+    }
+ol {
+    list-style-type: lower-roman;
+    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    text-align: center;
+    font-variant: small-caps;
+    border: 1px solid black;
+}
+td {
+    padding: 10px;
+    border: 1px solid black;
+}
+td:first-child {
+    text-align: left;
+}
+td:last-child {
+    text-align: center;
+}
+tbody tr:nth-child(even){
+    background-color: rgb(80%, 80%, 90%);
+}
+tbody tr:hover {
+    background-color: #1C780C;
+}

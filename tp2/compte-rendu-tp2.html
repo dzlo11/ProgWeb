@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compte-rendu du tp2</title>
+        <link rel="stylesheet" type="text/css" href="compte-rendu-tp2.css">
+    </head>
+
+    <body>
+        <h1 class="centered">Compte-rendu de tp2</h1>
+        <div class="right">
+            <p>NGALULA KABONGO David</p>
+        </div>
+        <section>
+            <h2>Exercice 0&nbsp;: Mon compte-rendu est trop stylé&nbsp;!</h2>
+                <ol>
+                <li>
+                    <h3>Le titre de l'exercice courant se trouve normalement dans une balise balise h2. Ajoutez à cette balise <br> un attribut style qui permet de mettre le titre de l'exercice en orange.</h3>
+                    <p> J'ai ajouté l'attribut style="color: orange;" à la balise &lt;h2&gt; de l'exercice 5 pour mettre le titre en orange.</p>
+                </li>
+                <li>
+                    <h3>Déclarez une balise style à l'intérieur des balises head du document, puis faites en sorte que tout le document utilise une police sans-serif.</h3>
+                    <p> J'ai ajouté la balise &lt;style&gt; dans la section &lt;head&gt; du document avec la règle CSS suivante : body { font-family: Arial, sans-serif; } pour que tout le document utilise une police sans-serif.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que la balise h1 corresponde à une police de 24 points, la balise h2 à une police de 18 points <br>et la balise h3 à une police 16 points.</h3>
+                    <p> J'ai ajouté les règles CSS suivantes dans la balise &lt;style&gt; : <br>
+                        h1 { font-size: 24pt; } <br>
+                        h2 { font-size: 18pt; } <br>
+                        h3 { font-size: 16pt; } <br>
+                        pour définir les tailles de police respectives pour les balises h1, h2 et h3.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les balises h2 soient affichées en bleu marine, à part le titre de cet exercice (qui doit rester en orange).</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; : <br>
+                        h2 { color: navy; } <br>
+                        pour que toutes les balises h2 soient affichées en bleu marine. Le titre de l'exercice 5 reste en orange grâce à l'attribut style spécifique ajouté précédemment.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que le titre du compte-rendu de TP soit centré. <br>
+                    Pour cela, vous allez créer une classe "centered" et ajouter un attribut class à la balise englobant le titre du compte-rendu. <br> Déclarez ensuite que le style pour la classe "centered" est centré.</h3>
+                    <p> J'ai ajouté la classe "centered" à la balise &lt;h1&gt; du titre du compte-rendu et j'ai défini la règle CSS suivante dans la balise &lt;style&gt; : <br>
+                        .centered { text-align: center; } <br>
+                        pour centrer le titre du compte-rendu de TP.</p>
+                </li>
+                <li>
+                    <h3>On veut que votre nom soit aligné à droite. Commencez par déclarer votre nom entre des balises div puis ajoutez une classe right permettant d'aligner le texte à droite.</h3>
+                    <p> J'ai enveloppé mon nom dans une balise &lt;div&gt; avec la classe "right" et j'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; : <br>
+                        .right { text-align: right; } <br>
+                        pour aligner mon nom à droite.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que le lien vers le cours de programmation web (que vous avez créé à l'exercice 1) soit en rouge si la souris <br>n'est pas sur le lien  et en bleu canard si la souris survole le lien.
+                    Conseil : Vous utiliserez pour cela les pseudo-classes des liens.</h3>
+                    <p> J'ai ajouté les règles CSS suivantes dans la balise &lt;style&gt; : <br>
+                        a:link { color: red; } <br>
+                        a:hover { color: teal; } <br>
+                        pour que le lien vers le cours de programmation web soit en rouge lorsqu'il n'est pas survolé par la souris et en bleu canard lorsqu'il est survolé.</p>
+                </li>
+                </ol>
+        </section>
+
+        <section>
+            <h2>Exercice 1&nbsp;: Feuille de style externe, liste et table</h2>
+            <ol>
+                <li>
+                    <h3>Reprendre le compte-rendu HTML créé au TP précédent, pour n'en conserver que l'en-tête et le dernier exercice,<br> que vous renommerez Exercice 0 : 
+                        Mon compte-rendu est trop stylé ! et dont vous supprimerez les informations de style.</h3>
+                    <p> J'ai repris le compte-rendu HTML du TP précédent en ne conservant que l'en-tête et le dernier exercice, <br> 
+                        que j'ai renommé Exercice 0 : Mon compte-rendu est trop stylé !. J'ai également supprimé les informations de style de ce compte-rendu.</p>
+                </li>
+                <li>
+                    <h3>On veut maintenant créer une feuille de style externe, c'est-à-dire une feuille de style déclarée non pas à l'intérieur <br> 
+                        de compte-rendu-tp2.html mais dans un fichier externe nommé compte-rendu-tp2.css. <br>
+                        Modifiez votre travail pour que le compte-rendu utilise ce fichier de style.</h3>
+                    <p> J'ai créé un fichier externe nommé compte-rendu-tp2.css et j'ai déplacé toutes les règles CSS de la balise &lt;style&gt; du document HTML vers ce fichier. <br>
+                        Ensuite, j'ai ajouté la ligne suivante dans la section &lt;head&gt; du document HTML pour lier la feuille de style externe : <br>
+                        &lt;link rel="stylesheet" href="compte-rendu-tp2.css"&gt;.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que la liste des questions de cet exercice et de l'exercice précédent utilise les chiffres romains <br>
+                        (en minuscules) plutôt que les traditionnels chiffres 1, 2, 3, etc.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans le fichier compte-rendu-tp2.css : <br>
+                        ol { list-style-type: lower-roman; } <br>
+                        pour que les listes ordonnées utilisent des chiffres romains en minuscules.</p>
+                </li>
+                <li>
+                    <h3>Le site https://en.wikipedia.org/wiki/List_of_2021_box_office_number-one_films_in_the_United_States contient <br>
+                        un tableau des films au box office. On souhaite recopier le titre et le montant des recettes pour les 5 plus gros succès <br>
+                        (il y a des flèches pour trier) pour les mettre dans une table dont nous allons changer l'aspect.</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Titre du film</th>
+                                <th>Montant des recettes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Spider-Man: No Way Home</td>
+                                <td>804 779 335 $</td>
+                            </tr>
+                            <tr>
+                                <td>Shang-Chi and the Legend of the Ten Rings</td>
+                                <td>224 543 292 $</td>
+                            </tr>
+                            <tr>
+                                <td>Venom : Let There Be Carnage</td>
+                                <td>212 638 437 $</td>
+                            </tr>
+                            <tr>
+                                <td>Black Widow</td>
+                                <td>183 651 655 $</td>
+                            </tr>
+                            <tr>
+                                <td>Fast and Furious 9</td>
+                                <td>173 005 945 $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p> J'ai copié le titre et le montant des recettes pour les 5 plus gros succès du tableau sur la page Wikipedia et je les ai organisés dans une table HTML.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que la table occupe toute la largeur du compte rendu.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans le fichier compte-rendu-tp2.css : <br>
+                        table { width: 100%; } <br>
+                        pour que la table occupe toute la largeur du compte-rendu.</p>
+                </li>
+                <li>
+                    <h3>Centrez les titres et changer la police de caractères des titres pour utiliser des petites majuscules (small caps).</h3>
+                    <p> J'ai ajouté les règles CSS suivantes dans le fichier compte-rendu-tp2.css : <br>
+                        th { text-align: center; font-variant: small-caps; } <br>
+                        pour centrer les titres de la table et utiliser des petites majuscules pour les titres.</p>
+                </li>
+                <li>
+                    <h3>Aérez la table avec la propriété padding pour que le texte ne soit pas collé aux bordures des cases <br>
+                        (qui sont invisibles a priori, mais que vous pouvez toujours rendre visibles si ça vous aide).</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans le fichier compte-rendu-tp2.css : <br>
+                        td { padding: 10px; } <br>
+                        pour ajouter de l'espace entre le texte et les bordures des cases de la table.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les valeurs du tableau soient alignées à gauche, sauf celles de la dernière colonne, qui doivent être centrées.</h3>
+                    <p> J'ai ajouté les règles CSS suivantes dans le fichier compte-rendu-tp2.css : <br>
+                        td:first-child { text-align: left; } <br>
+                        td:last-child { text-align: center; } <br>
+                        pour aligner les valeurs de la première colonne à gauche et celles de la dernière colonne au centre.</p>
+                </li>
+                <li>
+                    <h3>Changez la couleur de fond des lignes paires (even) pour mettre du bleu (80% de rouge, 80% de vert et 90% de bleu) en utilisant la pseudo-classe :nth-child.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans le fichier compte-rendu-tp2.css : <br>
+                        tr:nth-child(even){ background-color: rgb(80%, 80%, 90%); } <br>
+                        pour changer la couleur de fond des lignes paires de la table.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que si l'on survole une ligne avec la souris la couleur du fond corresponde à 28 sur 255 de rouge, 120 sur 255 de vert et 12 sur 255 de bleu en utilisant un codage hexadécimal.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans le fichier compte-rendu-tp2.css : <br>
+                        tr:hover { background-color: #1C780C; } <br>
+                        pour changer la couleur de fond d'une ligne lorsqu'on la survole avec la souris.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Exercice 2 : La ferme des animaux</h2>
+            <ol>
+                <li>
+                    <h3>Récupérez six images d'animaux dans un fichier zippé ainsi que le fichier exo2.html. <br>
+                        Vérifiez que les images s'affichent correctement lorsque vous visualisez le document. <br>
+                        Note 1 : On rappelle que le fichier exo2.html ne doit être modifié que en ajoutant des classes aux boîtes, <br>
+                        et des informations de style, la structure du document doit rester la même. <br>
+                        Note 2 : Le fichier resultat-exo2.png correspond à l'affichage que l'on souhaite avoir à la fin de cet exercice.</h3>
+                    <p> J'ai récupéré les six images d'animaux et le fichier exo2.html, puis j'ai vérifié que les images s'affichent correctement en visualisant le document dans un navigateur.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que toutes les images à l'intérieur des boîtes (pas les autres) aient une largeur (width) de 180 pixels. <br>
+                        Note : on suppose que l'on peut ajouter des images pas dans les boîtes par la suite.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box img { width: 180px; } <br>
+                        pour définir la largeur de toutes les images à l'intérieur des boîtes à 180 pixels, sans affecter les autres images qui pourraient être ajoutées ultérieurement.</p>
+                </li>
+                <li>
+                    <h3>Au lieu d'afficher les images verticalement, on souhaite les afficher horizontalement. Utilisez pour cela l'attribut float</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box { float: left; } <br>
+                        pour faire en sorte que les images à l'intérieur des boîtes s'affichent horizontalement.</p>
+                </li>
+                <li>
+                    <h3>Que se passe-t-il si l'on fait varier la taille de la fenêtre du navigateur horizontalement ?</h3>
+                    <p> Lorsque la taille de la fenêtre du navigateur est réduite horizontalement, les images flottantes s'adaptent en se réorganisant pour s'ajuster à l'espace disponible. <br>
+                        Si la fenêtre devient trop étroite, les images peuvent se déplacer vers la ligne suivante, créant ainsi un effet de "wrap" où les images s'empilent verticalement au lieu de rester sur une seule ligne.</p>
+                </li>
+                <li>
+                    <h3>Vérifiez que vous pouvez aussi mettre toutes les images à droite en changeant juste un mot dans la partie CSS du document. <br>
+                        Puis remettez les images alignées à gauche</h3>
+                    <p> J'ai changé la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box { float: right; } <br>
+                        pour aligner les images à droite, puis j'ai remis la règle à float: left; pour les aligner à gauche à nouveau.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les titres (animal1, animal2, etc.) soient affichés en blanc sur fond noir et soient centrés horizontalement par rapport <br>
+                        à la boîte qui les contient. Jouez de plus avec la propriété padding pour avoir un espacement convenable.</h3>
+                    <p> J'ai ajouté les règles CSS suivantes dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box div { color: white; background-color: black; text-align: center; padding: 5px; } <br>
+                        pour que les titres soient affichés en blanc sur fond noir, centrés horizontalement et avec un espacement de 5 pixels grâce à la propriété padding.</p>
+                </li>
+                <li>
+                    <h3>Espacez les unes des autres les six boîtes contenant les images avec la propriété margin. <br>
+                        Attention : on ne veut pas ajouter de marge aux six boîtes ne contenant pas d'image, par exemple les six boîtes contenantles titres des images.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box { margin: 10px; } <br>
+                        pour ajouter une marge de 10 pixels autour de chaque boîte contenant les images, sans affecter les boîtes contenant les titres.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les images à l'intérieur des boîtes aient une bordure de trois pixels de largeur de couleur #aaaaaa.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box img { border: 3px solid #aaaaaa; } <br>
+                        pour ajouter une bordure de trois pixels de largeur de couleur #aaaaaa à toutes les images à l'intérieur des boîtes.</p>
+                </li>
+                <li>
+                    <h3>Changez l'opacité (propriété opacity) lorsque l'utilisateur passe sa souris au-dessus d'une image dans une boîte.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box img:hover { opacity: 0.5; } <br>
+                        pour changer l'opacité des images à 0.5 lorsque l'utilisateur passe sa souris au-dessus d'une image dans une boîte.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les titres soient accolés par le bas à l'image et mordent légèrement sur l'image (de 5 pixels par exemple). <br>
+                        Note: l'idée est de placer la boîte contenant le texte relativement par rapport à la boîte contenant l'image.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .animal-box div { position: relative; top: -5px; } <br>
+                        pour faire en sorte que les titres soient accolés par le bas à l'image et mordent légèrement sur l'image de 5 pixels.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que le texte à mettre après soit situé en-dessous des images et de leurs titres, et non pas à leur droite.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo2.html : <br>
+                        .end { clear: both; } <br>
+                        pour faire en sorte que le texte à mettre après soit situé en-dessous des images et de leurs titres, en utilisant la propriété clear pour éviter que le texte ne s'affiche à côté des éléments flottants.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Exercice 3 : Barre de menu</h2>
+            
+            <ol>
+                <li>
+                    <h3>Faites en sorte que la liste ait une position fixe, en haut à gauche de la partie affichage du navigateur.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul { position: fixed; top: 0; left: 0; } <br>
+                        pour faire en sorte que la liste ait une position fixe en haut à gauche de la partie affichage du navigateur.</p>
+                </li>
+                <li>
+                    <h3>Retirez le style par défaut des items de liste (avec list-style-type) pour qu'il n'y ait pas de style par défaut.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul { list-style-type: none; } <br>
+                        pour retirer le style par défaut des items de liste.</p>
+                </li>
+                <li>
+                    <h3>Affichez les items en gras et avec une police Arial (ou sinon sans-serif).</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul li { font-weight: bold; font-family: Arial, sans-serif; } <br>
+                        pour afficher les items en gras et avec une police Arial (ou sinon sans-serif).</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les items soient affichés horizontalement collés à gauche et non plus verticalement.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul li { float: left; } <br>
+                        pour faire en sorte que les items soient affichés horizontalement collés à gauche et non plus verticalement.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que les items aient une largeur de 100 pixels et ajoutez un espacement d'une dizaine de pixel entre les items.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul li { width: 100px; margin-right: 10px; } <br>
+                        pour faire en sorte que les items aient une largeur de 100 pixels et ajouter un espacement d'une dizaine de pixel entre les items.</p>
+                </li>
+                <li>
+                    <h3>Changez le fond du menu pour qu'il soit de couleur violette (purple), en chantant purple rain, et changez la couleur des items pour qu'ils soient blancs.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul { background-color: purple; } <br>
+                        ul li { color: white; } <br>
+                        pour changer le fond du menu en violette et la couleur des items en blanc.</p>
+                </li>
+                <li>
+                    <h3>Fixez la hauteur (height) du menu à 50 pixels puis faites en sorte que le menu occupe toute la largeur (width).</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul { height: 50px; width: 100%; } <br>
+                        pour fixer la hauteur du menu à 50 pixels et faire en sorte qu'il occupe toute la largeur.</p>
+                </li>
+                <li>
+                    <h3>Faites en sorte que l'item 'About' soit affiché à droite de la barre de menu.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul li:last-child { float: right; } <br>
+                        pour faire en sorte que l'item 'About' soit affiché à droite de la barre de menu.</p>
+                </li>
+                <li>
+                    <h3>Affichez une ligne de 2 pixels en bas du menu. <br>
+                        L'astuce est de mettre une bordure de 2 pixels seulement en bas.</h3>
+                    <p> J'ai ajouté la règle CSS suivante dans la balise &lt;style&gt; du fichier exo3.html : <br>
+                        ul { border-bottom: 3px solid black; } <br>
+                        pour afficher une ligne de 2 pixels en bas du menu en utilisant une bordure uniquement en bas.</p>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>Ce TP m'a permis de me familiariser avec les bases du CSS, notamment la création de styles pour différents éléments HTML, l'utilisation de classes et d'identifiants, <br>
+                ainsi que la manipulation de la mise en page avec des propriétés telles que float et position. J'ai également appris à créer une feuille de style externe pour séparer le contenu HTML de la présentation CSS, <br>
+                ce qui rend le code plus organisé et maintenable. Enfin, j'ai découvert comment utiliser les pseudo-classes pour ajouter des effets interactifs aux éléments de la page, comme changer l'apparence d'un lien au survol de la souris.</p>
+        </section>
+    </body>
+</html>

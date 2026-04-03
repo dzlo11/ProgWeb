@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8">
+ </head>
+ <body>
+  <h2>Tableau à traiter</h2>
+  <div id="array"></div>
+   <script>
+      "use strict";
+      const array = [8, 2, 4, 0, 3, 9, 1, 5, 7, 6];
+      document.getElementById('array').innerHTML = "[" + array.join(", ") + "]";
+    </script>
+  
+  <h2>Min/Max 1</h2>
+  <div id="minmax1"></div>
+    <script>
+      const minmax = function(array) {
+        if (array.length === 0) {
+          return [undefined, undefined];
+        }
+        let min = array[0];
+        let max = array[0];
+        for (let i = 1; array.length; i++) {
+          if (array[i] < min) {
+            min = array[i];
+          }
+          if (array[i] > max) {
+            max = array[i];
+          }
+        }
+        return [min, max];
+      };
+      const minAndMax1 = minmax(array);
+      document.getElementById('minmax1').innerHTML = "min " + minAndMax1[0] + " max " + minAndMax1[1];
+   </script>
+   
+  <h2>Min/Max: Spread</h2>
+  <div id="minmax2"></div>
+   <script>
+      const minmax2 = function(array) {
+        return [Math.min(...array), Math.max(...array)];
+      };
+      const minAndMax2 = minmax2(array);
+      document.getElementById('minmax2').innerHTML = "min " + minAndMax2[0] + " max " + minAndMax2[1];
+   </script>
+   
+  <h2>Mélange</h2>
+    <div id="random"></div>
+    <script>
+      const random = n => Math.floor(n * Math.random());
+        const swap = function(array, i, j) {
+          let temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        };
+      const randomizeArray = function(array) {
+        for (let i = 0; i < array.length; i++) {
+          const j = i + random(n - i);
+          swap(array, i, j);
+        }
+      };
+      const sortedArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      randomizeArray(sortedArray);
+      
+      document.getElementById('random').innerHTML = "[" + sortedArray.join(", ") + "]";
+   </script>
+   
+  <h2>Min/Max 3: Fury Road</h2>
+  <div id="minmax3"></div>
+  <p>
+   <script>
+      const minmax3 = function(array) {
+        if (array.length === 0) {
+          return [undefined, undefined];
+        }
+        
+        let min, max, indexDepart;
+        
+        // Si le nombre d'éléments est impair
+        if (array.length % 2 !== 0) {
+          min = array[0];
+          max = array[0];
+          indexDepart = 1;
+        } else {
+          // Si pair, on compare les deux premiers pour initialiser
+          if (array[0] < array[1]) {
+            min = array[0]; 
+            max = array[1];
+          } else {
+            min = array[1]; max = array[0];
+          }
+          indexDepart = 2;
+        }
+
+        // On parcourt le reste du tableau deux par deux
+        for (let i = indexDepart; i < array.length; i += 2) {
+          let a = array[i];
+          let b = array[i + 1];
+          
+          if (a < b) {
+            if (a < min) min = a;
+            if (b > max) max = b;
+          } else {
+            if (b < min) min = b;
+            if (a > max) max = a;
+          }
+        }
+        return [min, max];
+      };
+      const minAndMax3 = minmax3(array);
+      document.getElementById('minmax3').innerHTML = "min " + minAndMax3[0] + " max " + minAndMax3[1];
+   </script>
+  </p>
+ </body>
+</html>
+

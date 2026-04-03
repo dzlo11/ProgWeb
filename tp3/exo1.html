@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Mon tout premier script</title>
+  <script>
+   "use strict";
+   // console.log("hello"); 
+   /* Question 1
+    for (let i = 0; i <= 2025; i++) {
+     console.log(i);
+    }
+    
+    Question 2
+    for (let i = 0; i <= 2025; i++) {
+    if (i % 2 === 0 || i % 3 === 0) {
+        console.log(i);
+    }
+   }
+    */
+    const divisibles2ou3 = function (entier) {
+        for (let i = 0; i <= entier; i++) {
+            if (i % 2 === 0 || i % 3 === 0) {
+                console.log(i);
+                }}}
+    // Test de la fonction avec les valeurs 7 et 10
+    divisibles2ou3(7); 
+    divisibles2ou3(10); 
+    // Test de la fonction avec la valeur -1
+    divisibles2ou3(-1);
+   
+  </script>
+ </head>
+ <body>
+  <h2>Premier pas en JavaScript</h2>
+ </body>
+</html>

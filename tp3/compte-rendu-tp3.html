@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compte-rendu du tp3</title>
+        
+    </head>
+
+    <body>
+        <h1>Compte-rendu de tp3</h1>
+        <p>NGALULA KABONGO David</p>
+        <p>Premiers pas en JavaScript</p>
+        
+        <section>
+          <h2>Exercice 1 &nbsp;: Hello World&nbsp;</h2>
+          <ol>
+            <li>
+              <h3>Recopiez la page Web exo1.html dans votre répertoire tp3. Que se passe-t-il lorsque l'on visualise la page ? <br>
+                Comment fait-on pour ouvrir la console avec Firefox ? Et avec Chrome ?</h3>
+                  <p>Lors qu'on visualise le fichier exo1.html, on voit le titre <b>« Premier pas en JavaScript »</b>. Rien d'autre ne s'affiche à l'écran.
+                      En revanche, un message <b>"hello"</b>  est affiché dans la console du navigateur. <br> 
+                      Pour ouvrir la console dans Firefox, on utilise le raccourci clavier Ctrl+Shift+K. Et Pour Chrome, on utilise Ctrl+Shift+J.</p>
+            </li>
+
+            <li>
+              <h3>Mettez l'ancien code en commentaire. <br>
+                Ecrivez un code permettant d'afficher, toujours dans la console, les nombres de 0 à 2025 inclus (il n'est pas nécessaire de faire une fonction pour l'instant).
+                Note : par pitié, pas de copier/coller, d'autant plus que l'on doit afficher 2026 nombres !</h3>
+                  <p>Voici le code que j'ai écrit pour afficher les nombres de 0 à 2025 inclus dans la console du navigateur : <br>
+                          "use strict"; x <br>
+                          for (let i = 0; i &lt;= 2025; i++) { <br>
+                              console.log(i); <br>
+                          }
+                  </p>
+            </li>
+
+            <li>
+              <h3>Mettez l'ancien code en commentaire. <br>
+                Réécrivez un nouveau code code pour afficher dans la console les nombres divisibles par 2 ou par 3 allant de 0 à 2025 inclus : 0, 2, 3, 4, 6, 8, …, 2020, 2022, 2024, 2025.</h3>
+                  <p>Voici le code que j'ai écrit pour afficher les nombres divisibles par 2 ou par 3 allant de 0 à 2025 inclus dans la console du navigateur : <br>
+                          "use strict"; x <br>
+                          for (let i = 0; i &lt;= 2025; i++) { <br>
+                              if (i % 2 === 0 || i % 3 === 0) { <br>
+                                  console.log(i); <br>
+                              }}
+                  </p>
+            </li>
+
+            <li>
+              <h3>Commentez l'ancien code et écrire une fonction (que vous nommerez de façon claire et intelligente) prenant un entier en <br>
+                paramètre et affichant sur la console les nombres divisibles par 2 ou par 3 allant de de 0 à cet entier (inclus). Puis écrivez un code de test de <br>
+                la fonction avec les valeurs 7 et puis 10. Que se passe-t-il si on teste la fonction avec la valeur -1 ?</h3>
+                  <p>Voici le code que j'ai écrit pour créer une fonction qui affiche les nombres divisibles par 2 ou par 3 allant de 0 à un entier donné en paramètre : <br><br>
+                          "use strict"; <br>
+                           const divisibles2ou3 = function (entier) { <br>
+                              for (let i = 0; i &lt;= entier; i++) { <br>
+                                  if (i % 2 === 0 || i % 3 === 0) { <br>
+                                      console.log(i); <br>
+                                  }}}
+                          <br><br>
+                          // Test de la fonction avec les valeurs 7 et 10
+                          divisibles2ou3(7); <br>
+                          divisibles2ou3(10); <br>
+                          // Test de la fonction avec la valeur -1
+                          divisibles2ou3(-1);<br><br>
+                      Lorsque nous testons la fonction avec la valeur -1, aucun nombre n'est affiché dans la console du navigateur. En effet, la boucle for ne s'exécute pas car la condition i &lt;= entier n'est jamais vérifiée pour i = 0 et entier = -1.
+                  </p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Exercice 2 &nbsp;: Manipulations simples</h2>
+          <ol>
+
+            <li>
+              <h3>Dans la section Question 1, remplir le corps de la fonction sumSquares de sorte que sumSquares(n) renvoie la somme des carrés des entiers de 0 à n <br>
+                inclus. Par exemple, sumSquares(3) = 0 x 0 + 1 x 1 + 2 x 2 + 3 x 3 = 14. Afficher ensuite dans la console les valeurs de sumSquares(n) lorsque n vaut 3, <br>
+                10, 10000000, et enfin 100000000. La valeur de sumSquares(100000000) vous surprend-elle ?</h3>
+                <p>Voici le code que j'ai écrit pour afficher la somme des carres entiers de 0 à n inclus : <br>
+                    "use strict"; <br>
+                      const Sum = function(n) { <br>
+                          let sumSquares = 0; <br>
+                          for (let i = 0; i &lt;= n; i++) { <br>
+                              sumSquares += i * i; <br>
+                          } <br>
+                          return sumSquares; <br>
+                      }; <br><br>
+                      // Test pour n = 3, 10, 10000000, et 100000000
+                      console.log(SumSquares(3));   <br>
+                      console.log(SumSquares(10));  <br> 
+                      console.log(SumSquares(10000000)); <br>
+                      console.log(SumSquares(100000000)); <br><br>
+                      La valeur de sumSquares(100000000) ne me surprend pas, car elle correspond à la formule mathématique de la somme des carrés des n premiers entiers, <br>
+                      qui est donnée par n(n + 1)(2n + 1) / 6. En appliquant cette formule pour n = 100000000, on obtient exactement le résultat affiché.
+                </p>
+            </li>
+
+            <li>
+              <h3>Décommenter la ligne où l'on appelle la fonction question2. <br>
+                Que s'affiche-t-il dans la console ? Expliquer chacun des résultats des huits tests que l'on a effectués.</h3>
+                <p>Lorsque nous décommentons la ligne où l'on appelle la fonction question2, les résultats suivants s'affichent dans la console du navigateur : <br><br>
+                    Test n°2.1 : false <br>
+                    Test n°2.2 : true <br>
+                    Test n°2.3 : true, true, false, false <br>
+                    Test n°2.4 : true, true <br>
+                    Test n°2.5 : (rien ne s'affiche) <br>
+                    Test n°2.6 : (rien ne s'affiche) <br>
+                    Test n°2.7 : true, true, false <br>
+                    Test n°2.8 : true <br><br>
+                    Explication des résultats : <br>
+                    - Test n°2.1 : La fonction silent(true) renvoie true, mais la fonction silent(false) renvoie false. Comme il y a une opération AND (&&) entre les quatre appels à la fonction silent, le résultat final est false. <br>
+                    - Test n°2.2 : La fonction silent(true) renvoie true, et la fonction silent(false) renvoie false. Comme il y a une opération OR (||) entre les quatre appels à la fonction silent, le résultat final est true. <br>
+                    - Test n°2.3 : La fonction verbose(true) affiche true dans la console et renvoie true, tandis que la fonction verbose(false) affiche false dans la console et renvoie false. Comme il y a une opération AND (&&) entre les quatre appels à la fonction verbose, le résultat final est true pour les deux premiers appels et false pour les deux derniers appels. <br>
+                    - Test n°2.4 : La fonction verbose(true) affiche true dans la console et renvoie true, tandis que la fonction verbose(false) affiche false dans la console et renvoie false. Comme il y a une opération OR (||) entre les quatre appels à la fonction verbose, le résultat final est true pour les deux premiers appels et true pour les deux derniers appels. <br>
+                    - Test n°2.5 : Comme il n'y a pas d'appel à la fonction verbose, rien ne s'affiche dans la console. <br>
+                    - Test n°2.6 : Comme il n'y a pas d'appel à la fonction verbose, rien ne s'affiche dans la console. <br>
+                    - Test n°2.7 : La fonction verbose(true) affiche true dans la console et renvoie true, tandis que la fonction verbose(false) affiche false dans la console et renvoie false. Comme il y a une opération AND (&&) entre les quatre appels à la fonction verbose, le résultat final est true pour les deux premiers appels et false pour les deux derniers appels. <br>
+                    - Test n°2.8 : La fonction verbose(true) affiche true dans la console et renvoie true, tandis que la fonction verbose(false) affiche false dans la console et renvoie false. Comme il y a une opération OR (||) entre les quatre appels à la fonction verbose, le résultat final est true pour les deux premiers appels et true pour les deux derniers appels. </p>
+            </li>
+
+            <li>
+              <h3>Recommenter la ligne où l'on appelle la fonction question2 puis décommenter la ligne où l'on appelle la fonction question3. <br>
+                Que s'affiche-t-il dans la console ? Expliquer chacun des résultats des trois tests que l'on a effectués.</h3>
+                <p>Lorsque nous décommentons la ligne où l'on appelle la fonction question3, les résultats suivants s'affichent dans la console du navigateur : <br><br>
+                    Test n°3.1 : 6 <br>
+                    Test n°3.2 : "33" <br>
+                    Test n°3.3 : "6363" <br><br>
+                    Explication des résultats : <br>
+                    - Test n°3.1 : La fonction double(3) renvoie 3 + 3, ce qui donne 6. <br>
+                    - Test n°3.2 : La fonction double("3") renvoie "3" + "3", ce qui donne "33". En JavaScript, l'opérateur + peut être aussi utilisé pour la concaténation de chaînes de caractères. <br>
+                    - Test n°3.3 : La fonction double(3+3+"3") évalue d'abord l'expression 3+3, qui donne 6, puis elle évalue l'expression 6+"3", qui donne "63". Ensuite, la fonction double("63") renvoie "63" + "63", ce qui donne "6363". </p>
+            </li>
+
+          </ol>
+        </section>
+
+        <section>
+          <h2>Exercice 3 : Nombres premiers et PGCD</h2>
+          <ol>
+
+            <li>
+              <h3>Quel message d'avertissement pouvez-vous lire quand vous ouvrez la console ? Et que voyez-vous quand vous ouvrez l'onglet « Réseau » de la console de développement Web ? <br>
+                Lire attentivement le code source du fichier exo3.html et téléchargez dans votre répertoire tp3 la ressource qu'il vous manque pour faire fonctionner correctement la page exo3.html.</h3>
+                <p>Lorsque j'ouvre la console du navigateur, je vois un message d'avertissement indiquant que le fichier graph.js n'a pas pu être chargé. En ouvrant l'onglet "Réseau" de la console de développement Web, je vois que le fichier graph.js est introuvable. <br>
+                    En examinant le code source du fichier exo3.html, je remarque qu'il y a une ligne qui inclut un script à l'adresse https://vincentjuge1987.github.io/td/src/td03/graph.js. Pour faire fonctionner correctement la page exo3.html, je dois télécharger ce fichier graph.js et le placer dans mon répertoire tp3. </p>
+            </li>
+
+            <li>
+              <h3>En haut de la page Web se trouve une section intitulée Somme. Vous pouvez y écrire deux entiers, dans deux zones balisées de type textarea.
+                Que se passe-t-il quand vous appuyez sur le bouton C'est parti ! situé juste en-dessous ?
+                Quelle ressource devez-vous charger pour que tout s'affiche bien ?</h3>
+                <p>Lorsque j'appuie sur le bouton "C'est parti !" situé juste en-dessous de la section Somme, la somme des deux entiers que j'ai écrits dans les zones de type textarea s'affiche à côté du signe égal. <br>
+                    Pour que tout s'affiche bien, je dois charger la ressource graph.js, qui contient le code JavaScript nécessaire pour effectuer les calculs et afficher les résultats sur la page web. </p>
+            </li>
+
+            <li>
+              <h3>Dans cette première section, on calculait la somme de deux entiers, à l'aide d'une fonction nommée sum. Dans la deuxième section, on souhaite calculer le PGCD de deux entiers.
+                Pour ce faire, remplir le corps de la fonction pgcd de sorte que pgcd(a,b) renvoie le PGCD des entiers a et b.
+                On rappelle que le PGCD peut se calculer à l'aide de l'algorithme d'Euclide.
+                Tester votre fonction en écrivant des entiers dans les deux zones balisées de type textarea.</h3>
+                <p>Voici le code que j'ai écrit pour calculer le PGCD de deux entiers a et b à l'aide de l'algorithme d'Euclide : <br>
+                    "use strict"; <br>
+                    const pgcd = function(a, b) { <br>
+                        while (b !== 0) { <br>
+                            let temp = b; <br>
+                            b = a % b; <br>
+                            a = temp; <br>
+                        } <br>
+                        return a; <br>
+                    }; <br><br>
+                    Pour tester la fonction pgcd, j'ai écrit des entiers dans les deux zones balisées de type textarea et j'ai appuyé sur le bouton "C'est parti !". Le résultat du PGCD s'affiche à côté du signe égal. </p>
+            </li>
+            
+            <li>
+              <h3>On souhaite maintenant vérifier si un nombre est premier. On rappelle qu'un entier n est premier lorsque n possède exactement deux diviseurs strictement positifs.
+                Remplir le corps de la fonction isPrime de sorte que isPrime(n) renvoie true si n est un nombre premier, et false sinon.
+                Tester votre fonction en écrivant un entier dans la zone balisée de type textarea.</h3>
+                <p>Voici le code que j'ai écrit pour vérifier si un nombre n est premier : <br>
+                    "use strict"; <br>
+                    const isPrime = function(n) { <br>
+                        if (n &lt;= 1) return false; <br>
+                        for (let i = 2; i * i &lt;= n; i++) { <br>
+                            if (n % i === 0) return false; <br>
+                        } <br>
+                        return true; <br>
+                    }; <br><br>
+                    Pour tester la fonction isPrime, j'ai écrit un entier dans la zone balisée de type textarea et j'ai appuyé sur le bouton "C'est parti !". Le résultat indiquant si le nombre est premier ou non s'affiche à côté de la question "est-il un nombre premier ?". </p>
+            </li>
+
+            <li>
+              <h3>On souhaite enfin afficher la liste des premiers nombres premiers. Remplir le corps de la fonction listPrimes de sorte que listPrimes(n) renvoie une chaîne de caractères contenant les écritures décimales des nombres premiers compris entre 2 et n inclus, séparées par des virgules.
+                Par exemple, listPrimes(9) renvoie la chaîne de caractères "2,3,5,7".
+                Tester votre fonction en écrivant un entier dans la zone balisée de type textarea.</h3>
+                <p>Voici le code que j'ai écrit pour afficher la liste des nombres premiers compris entre 2 et n inclus : <br>
+                    "use strict"; <br>
+                    const listPrimes = function(n) { <br>
+                        let primes = []; <br>
+                        for (let i = 2; i &lt;= n; i++) { <br>
+                            if (isPrime(i)) { <br>
+                                primes.push(i); <br>
+                            } <br>
+                        } <br>
+                        return primes.join(","); <br>
+                    }; <br><br>
+                    Pour tester la fonction listPrimes, j'ai écrit un entier dans la zone balisée de type textarea et j'ai appuyé sur le bouton "C'est parti !". La liste des nombres premiers compris entre 2 et l'entier donné s'affiche à côté de "Nombres premiers jusqu'à". </p>
+            </li>
+          </ol>
+        </section>
+    </body>
+</html>

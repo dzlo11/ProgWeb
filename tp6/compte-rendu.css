@@ -1,0 +1,64 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    line-height: 1.6; /* J'améliore la lisibilité en espaçant les lignes */
+    max-width: 1200px; /* J'empêche le texte de s'étaler trop largement */
+    margin: 0 auto; /* Je centre tout le contenu de la page et le 0 sert a quoi ? */
+    padding: 30px;
+    background-color: #fdfdfd;
+}
+
+h1 {
+    font-size: 28pt;
+    color: black;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20pt;
+    color: navy;
+    border-bottom: 2px solid #eee; /* J'ajoute une ligne de séparation sous les exercices */
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+h3, .soustitre {
+    font-size: 14pt;
+    color: #3581B8;
+}
+
+.right {
+    text-align: right;
+    color: black;
+    font-style: italic;
+}
+
+.centered {
+    text-align: center;
+}
+
+pre {
+    background-color: #f4f4f4; /* Fond gris clair pour le code */
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto; /* J'ajoute une barre de défilement si le code est trop long */
+    border-left: 5px solid navy; 
+    font-family: 'Courier New', Courier, monospace; 
+    margin: 10px 0;
+}
+
+code {
+    font-size: 11pt;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+.important {
+    color: red; 
+    font-style: italic;
+}
+
+strong {
+    color: black; 
+}

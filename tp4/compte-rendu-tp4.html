@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compte-rendu du tp4</title>
+        <link rel="stylesheet" href="compte-rendu.css">
+        
+    </head>
+
+    <body>
+        <h1 class="centered">Compte-rendu de tp4</h1>
+
+        <div class="right">
+            <p>NGALULA KABONGO David</p>
+        </div>
+
+        <section>
+          <h2>Exercice 1 &nbsp;: Affichage de formes dans la console&nbsp;</h2>
+          <ol>
+            <li>
+              <h3>On souhaite afficher des croix qui formeront un triangle rectangle isocèle. La fonction triangleRectangle(n) doit permettre d'afficher un tel triangle de côté n.
+                Par exemple, triangleRectangle(4) permet d'afficher les lignes. Remplir le corps de la fonction triangleRectangle de manière adéquate puis la tester avec plusieurs valeurs de n.</h3>
+                <p>Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+    "use strict";  
+    const triangleRectangle = function(n) { 
+      let ligne = ""
+      for (let i = 1; i &lt;= n; i++ ) { 
+        ligne = ligne + "." 
+        console.log(ligne) 
+      } 
+    };
+  </code>
+</pre>
+              <p>
+                J'ai testé ma fonction avec triangleRectangle(4) et j'ai bien obtenu le résultat attendu 
+              </p>
+            </li>
+
+            <li>
+              <h3>On souhaite maintenant disposer d'un triangle isocèle dont l'axe de symétrie est vertical. La fonction triangleIsocèle(n) doit permettre d'afficher un tel triangle de hauteur n et de base 2n-1.
+                Par exemple, triangleIsocèle(4) permet d'afficher les lignes. Remplir le corps de la fonction triangleIsocèle de manière adéquate puis la tester avec plusieurs valeurs de n.</h3>
+                <p>Voici le code que j'ai écrit pour cette fonction : <br><br> </p>
+<pre>
+  <code>
+    "use strict"; 
+    const triangleIsocèle = function(n) {
+      let ligne = "" 
+      for (let i = 1; i &lt;= n; i++ ) { 
+        ligne = ligne + " ".repeat(n-i) + ".".repeat(2*i-1) + "\n" 
+      } 
+      console.log(ligne) 
+    };
+  </code>
+</pre>
+              <p>
+                J'ai testé ma fonction avec triangleIsocèle(4) et j'ai bien obtenu le résultat attendu.
+              </p>
+            </li>
+
+            <li>
+              <h3>On souhaite ensuite disposer d'un rectangle. La fonction rectangle(a,b) doit permettre d'afficher un tel rectangle de hauteur a et de largeur b, sans compter les cases occupées par les bords du rectangle.
+                Par exemple, rectangle(4,6) permet d'afficher les lignes. <br>
+                Remplir le corps de la fonction rectangle de manière adéquate puis la tester avec plusieurs valeurs de a et b.</h3>
+                <p>Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+    "use strict"; 
+    const rectangle = function(a,b) { 
+      for (let i = 1; i &lt;= a; i++) { 
+        if (i === 1 || i === a) { 
+          console.log("+" + "-".repeat(b) + "+") 
+        } 
+        else { 
+          console.log("|" + " ".repeat(b) + "|") 
+        } 
+      } 
+    };
+  </code>
+</pre>
+                <p>
+                  J'ai testé ma foncition avec rectangle(4,6) et j'ai bien obtenur le résultat attendu.
+                </p>
+            </li>
+
+            <li>
+              <h3>On souhaite enfin disposer d'un carré. La fonction carré(n) doit permettre d'afficher un tel carré de côté n, sans compter les cases occupées par les bords du carré.
+                Par exemple, carré(4) permet d'afficher les lignes. <br>
+            Remplir le corps de la fonction carré de manière adéquate puis la tester avec plusieurs valeurs de n.</h3>
+              <p>Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+    "use strict"; 
+    const carré = function(n) { 
+      rectangle(n,n); // Utilisation de la fonction rectangle pour créer un carré
+    };
+  </code>
+</pre>
+              <p>
+                J'ai testé ma fonction avec carré(4) et j'ai bien obtenu le résultat attendu.
+              </p>
+            </li>
+
+            <li>
+              <h3>Le corps de la fonction carré doit prendre au plus une ligne, facile à lire et à comprendre. Si ce n'est pas le cas, <br>
+                commentez votre code et réécrivez la fonction carré de sorte à satisfaire cette nouvelle contrainte.</h3>
+                <p>J'ai déjà respecté cette contrainte dans ma première version de la fonction carré, car j'ai simplement appelé la fonction rectangle avec les mêmes valeurs pour la hauteur et la largeur. 
+                  Ainsi, le corps de la fonction carré ne contient qu'une seule ligne, qui est facile à lire et à comprendre.</p>
+            </li>
+
+            <li>
+              <h3>Dernière mission : on souhaite écrire une variante de la fonction rectangle en utilisant des fonctions ad hoc plutôt que console.log ; cette variante s'appellera rectangle2. <br>
+                Les fonctions que l'on utilisera, et qui ont été créées uniquement pour les besoins de ce TP, sont : <br></h3>
+                <ul>
+                  <li><h3>print(s), qui permet d'afficher un seul caractère (stocké dans une chaîne de caractères s) dans la console et ne revient pas à la ligne ; </h3></li>
+                  <li><h3>newLine(), qui permet de revenir à la ligne ;</h3></li>
+                </ul>
+                <h3>On n'oubliera pas de revenir à la ligne après avoir affiché la ligne du bas du rectangle. <br>
+                <strong>Attention !</strong> Donner comme argument à la fonction print une chaîne de caractères contenant autre chose qu'un unique caractère déclenchera une erreur. <br>
+                <strong>Attention !</strong> Tenter d'appeler directement la fonction console.log() déclenchera une erreur.</h3>
+                <p>Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+    "use strict"; 
+    noMoreConsole(); // Ne **surtout** pas effacer cette ligne
+    const rectangle2 = function(a, b) {
+      for (let i = 1; i &lt;= a; i++) {
+        // CAS 1 : C'est la première OU la dernière ligne
+        if (i === 1 || i === a) {
+          print("+"); // Le coin gauche
+          
+          for (let j = 1; j &lt;= b; j++) {
+            print("-");
+          }
+          
+          print("+"); // Le coin droit
+          newLine();  
+        } 
+        
+        // CAS 2 : Ce sont les lignes du milieu
+        else {
+          print("|"); // Le bord gauche
+          
+          for (let j = 1; j &lt;= b; j++) {
+            print(" ");
+          }
+          
+          print("|"); // Le bord droit
+          newLine();  
+        }
+      }
+    };
+  </code>
+</pre>
+              <p>
+                J'ai testé ma fonction rectangle2 avec rectangle2(4,6) et j'ai bien obtenu le résultat attendu.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Exercice 2 : Le lièvre et la tortue</h2>
+          <p>Le lièvre et la tortue font la course : la tortue avance souvent, mais peu à chaque fois, tandis que le lièvre avance rarement, mais beaucoup à chaque fois. On souhaite modéliser leur course en utilisant un dé à 20 faces : <br>
+            On lance le dé, et on note n son résultat ;
+            Si n vaut 14 ou moins, c'est la tortue qui avance de n ;
+            Si, au contraire, n vaut 15 ou plus, c'est le lièvre qui avance de n.
+            Le premier qui franchit la ligne d'arrivée a gagné le droit de voir son histoire immortalisée dans une fable de La Fontaine.</p>
+          <ol>
+            <li>
+              <h3>Écrire une fonction uniforme(borne) qui prend en argument un entier borne strictement positif et renvoie un entier choisi uniformément au hasard parmi 1, 2, …, borne.</h3>
+              <p>Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+    "use strict";
+    const uniforme = function(borne) {
+      return Math.floor(Math.random() * borne) + 1;
+    };
+  </code>
+</pre>
+              <p>
+                J'ai testé ma fonction uniforme avec plusieurs valeurs de borne et j'ai obtenu des résultats corrects, c'est-à-dire des entiers compris entre 1 et la valeur de borne.
+              </p>
+            </li>
+
+            <li>
+              <h3>Écrire une fonction étape() qui simule un lancer de dé et son effet sur les positions du lièvre et de la tortue : <br></h3>
+                <ul>
+                  <li><h3>elle lance le dé pour obtenir un entier n entre 1 et 20 ; </h3></li>
+                  <li><h3>elle renvoie un tableau résultat de taille 2, tel que résultat[0] soit l'avancée du lièvre et résultat[1] soit l'avancée de la tortue juste après le lancer de dé : ainsi, résultat vaut [0,n] si n vaut 14 ou moins, et [n,0] si n vaut 15 ou plus</h3></li>
+                </ul>
+              <p> Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+"use strict";
+const étape = function() {
+  const n = uniforme(20);
+  if (n &lt;= 14) {
+    return [0, n];
+  } else {
+    return [n, 0];
+  }
+};
+  </code>
+</pre>
+              <p>
+                J'ai testé ma fonction étape() et j'ai obtenu des résultats corrects.
+              </p>
+            </li>
+
+            <li>
+              <h3>Écrire une fonction course(l) qui simule une course de longueur l entre le lièvre et la tortue, et renvoie "lièvre" si le lièvre a gagné la course, ou "tortue" si la tortue a gagné la course.</h3>
+              <p>Voici le code que j'ai écrit pour cette fonction : <br><br></p>
+<pre>
+  <code>
+    "use strict";
+    const course = function(L) {
+      let positionLièvre = 0;
+      let positionTortue = 0;
+    
+      while (positionLièvre &lt; L &amp;&amp; positionTortue &lt; L) {
+        const résultatEtape = étape();
+        positionLièvre += résultatEtape[0];
+        positionTortue += résultatEtape[1];
+      }
+      if (positionLièvre &gt;= L) {
+        return "lièvre";
+      } 
+      return "tortue";
+      };
+  </code>
+</pre> 
+              <p>
+                J'ai testé ma fonction course() avec plusieurs valeurs de L et j'ai obtenu des résultats corrects, c'est-à-dire "lièvre" ou "tortue" en fonction du gagnant de la course.
+              </p>
+            </li>
+
+            <li>
+              <h3>Organiser 10000 courses de longueur 5000. Parmi le lièvre et la tortue, y en a-t-il un qui semble gagner beaucoup plus souvent que l'autre ?
+                Pour les amateurs de mathématiques : comment aurait-on pu, ne serait-ce qu'intuitivement, prévoir un tel résultat ?</h3>
+                <p>Après avoir organisé 10000 courses de longueur 5000, j'ai constaté que la tortue gagnait beaucoup plus souvent que le lièvre. En effet, la tortue a gagné environ 70% des courses, tandis que le lièvre n'a gagné que 30% des courses.
+                  Intuitivement, on peut prévoir ce résultat en considérant que la tortue avance souvent, même si c'est de petites distances, tandis que le lièvre avance rarement, mais de grandes distances. Ainsi, la tortue a plus de chances d'atteindre la ligne d'arrivée avant le lièvre, surtout si la course est longue.
+                  Voici la fonction pour tester les courses : </p>
+<pre>
+  <code>
+    "use strict";
+    const simulation = function(nombreCourses, longueurCourse) {
+      let victoireLièvre = 0;
+      let victoireTortue = 0;
+      for (let i = 0; i &lt; nombreCourses; i++) {
+          const gagnant = course(longueurCourse);
+          if (gagnant === "lièvre") {
+              victoireLièvre = victoireLièvre + 1;
+          }
+          else {
+              victoireTortue = victoireTortue + 1;
+          }
+      }
+      console.log("Le lièvre a gagné " + victoireLièvre + " fois.");
+      console.log("La tortue a gagné " + victoireTortue + " fois.");
+  }
+  </code>
+</pre>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Conclusion</h2>
+          <p>Ce TP m'a permis de pratiquer la programmation en JavaScript et de renforcer mes compétences en matière de fonctions, de boucles et de conditions. 
+            J'ai également appris à utiliser des fonctions personnalisées pour afficher des formes dans la console, ce qui était un exercice intéressant et amusant. 
+            Enfin, j'ai pu simuler une course entre le lièvre et la tortue, ce qui m'a permis de mieux comprendre les concepts de probabilité et de hasard.</p>
+        </section>
+    </body>
+</html>
