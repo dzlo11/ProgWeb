@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Compte-rendu du TP8 - Programmation Web</title>
+    <link rel="stylesheet" href="compte-rendu.css">
+</head>
+
+<body>
+    <header class="page-de-garde">
+        <div class="univ-info">
+            <p>Université Gustave Eiffel</p>
+            <p>Licence 1 Mathématiques - Informatique</p>
+        </div>
+        
+        <div class="tp-info centered">
+            <h1>Compte-rendu de TP n°8</h1>
+            <h2>Architecture du Web et Protocole HTTP</h2>
+        </div>
+
+        <div class="info-etudiant right">
+            <p>Présenté par : <strong>David NGALULA KABONGO</strong></p>
+            <p>Groupe : <strong>TP 11</strong></p>
+            <p>Date : 17 avril 2026</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Exercice 1 : Un panier de fruits</h2>
+            <ol start="2">
+                <li>
+                    <h3>On cherche à écrire une requête AJAX qui va lire le fichier fruitQuantities.json.
+                        Créez un objet <code>XMLHttpRequest</code>, utilisez la méthode <code>open()</code> pour créer une requête sur le fichier 
+                        <code>fruitQuantities.json</code> stocké sur le serveur Github (et non pas celui que vous avez copié localement), puis envoyez la requête 
+                        au serveur avec la méthode <code>send</code>.
+                        Comment faire pour savoir si la requête a réussi ou échoué en utilisant les outils de développement de votre navigateur ?
+                        Testez si votre requête AJAX fonctionne avec Firefox et avec Chrome.
+                    </h3>
+
+                        <p>Voici le code pour effectuer la requête AJAX :</p>
+
+<pre>var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://raw.githubusercontent.com/gustave-eiffel/progweb/main/tp8/fruitQuantities.json', true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        // Traitez les données ici
+    }
+};
+xhr.send();</pre>
+
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Exercice 2 : Combien ça coûte ?</h2>
+            <ol>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Exercice 3 : Les promesses n'engagent que ceux qui y croient</h2>
+            <ol>
+            </ol>
+        </section>
+
+        <section class="conclusion-section">
+            <h2>Conclusion</h2>
+            <div class="card-conclusion">
+                <p>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="centered">Compte-rendu de TP8 - David Ngalula Kabongo - Université Gustave Eiffel - 2026</p>
+    </footer>
+</body>
+
+</html>
