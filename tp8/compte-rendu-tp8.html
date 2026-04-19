@@ -36,34 +36,263 @@
                         <code>fruitQuantities.json</code> stocké sur le serveur Github (et non pas celui que vous avez copié localement), puis envoyez la requête 
                         au serveur avec la méthode <code>send</code>.
                         Comment faire pour savoir si la requête a réussi ou échoué en utilisant les outils de développement de votre navigateur ?
-                        Testez si votre requête AJAX fonctionne avec Firefox et avec Chrome.
-                    </h3>
+                        Testez si votre requête AJAX fonctionne avec Firefox et avec Chrome.</h3>
+                    <p>Pour vérifier la réussite de la requête, on utilise l'onglet Réseau (Network) des outils de développement. 
+                        Un code 200 OK valide le succès. Si le lien GitHub est mort, on verra une erreur 404.</p>
+                    <p>Voici le code pour effectuer la requête AJAX :</p>
 
-                        <p>Voici le code pour effectuer la requête AJAX :</p>
-
-<pre>var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://raw.githubusercontent.com/gustave-eiffel/progweb/main/tp8/fruitQuantities.json', true);
-xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        // Traitez les données ici
+<pre>const ajax = new XMLHttpRequest();
+ajax.open('GET', 'https://raw.githubusercontent.com/gustave-eiffel/progweb/main/tp8/fruitQuantities.json', true);
+ajax.onreadystatechange = function () {
+    if (ajax.readyState === 4 && ajax.status === 200) {
+        console.log("Statut de la requête : " + ajax.status);
     }
 };
-xhr.send();</pre>
+ajax.send();</pre>
+                </li>
 
+                <li>
+                    <h3>Que se passe-t-il si vous essayez d'envoyer une requête pour récupérer une copie locale du fichier fruitQuantities.json ? 
+                        Si vous avez un message d'erreur, comment pouvez-vous expliquer le contenu de ce message d'erreur ?</h3>
+                    <p>Si on tente de charger le fichier localement sans serveur (via file://), le navigateur bloque la requête pour des raisons de sécurité. 
+                        Le message d'erreur mentionne généralement une violation de la politique CORS (Cross-Origin Resource Sharing).</p>
+                </li>
+
+                <li>
+                    <h3>En fonction de votre navigateur et de la version de celui-ci, il se peut que vous n'ayez pas pu accéder au fichier fruitQuantities.json. 
+                        Pour éviter que ce genre de mésaventures ne se reproduise, vous allez lancer un serveur HTTP minimaliste sur votre propre machine. 
+                        (Lisez bien toute la question, y compris le paragraphe qui commence par Attention, avant d'entamer les opérations qui suivent).
+                        Pour ce faire, ouvrez un terminal, placez-vous dans le répertoire tp8, puis lancez la commande python HTTPServer.py. 
+                        Vous venez de lancer votre serveur HTTP dans le répertoire tp8, et alors le fichier fruitQuantities.json est accessible depuis 
+                        l'URL http://localhost:8080/fruitQuantities.json. <br>
+                    
+                        Attention : Si jamais votre ordinateur hébergeait déjà un service qui utilisait le port 8080, vous avez dû voir s'afficher un message d'erreur 
+                        Port 8080 already in use. Dans ce cas, vous pouvez remplacer le port 8080 par le port 3000 (ou bien par n'importe quel port : il vous suffit de 
+                        remplacer 3000 par votre numéro de port préféré) en lançant la commande suivante : python HTTPServer.py 3000. Le fichier fruitQuantities.json 
+                        sera accessible depuis l'URL http://localhost:3000/fruitQuantities.json.
+                        Note : Si jamais vous avez l'habitude d'utiliser une autre commande ou méthode pour exécuter des scripts python, faites comme d'habitude. 
+                        L'essentiel étant d'exécuter le script HTTPServer.py.</h3>
+                    <p>Pour lancer le serveur, on utilise la commande python HTTPServer.py. Le serveur écoute sur le port 8080. 
+                        L'avantage d'utiliser ce serveur est qu'il ajoute les bons en-têtes HTTP, 
+                        permettant d'éviter les erreurs de sécurité CORS que l'on rencontre en ouvrant les fichiers directement.
+                        Voici ce qui change dans le code : </p>
+
+<pre>ajax.open('GET', 'http://localhost:8080/fruitQuantities.json', true);</pre>
+                </li>
+
+                <li>
+                    <h3>Ajoutez une fonction pour écouter les événements readystatechange et si la requête a réussi, affichez le résultat de la propriété responseText dans la console.</h3>
+                    <p>Voici le code : </p>
+
+<pre>ajax.onreadystatechange = function () {
+    if (ajax.readyState === 4 && ajax.status === 200) {
+        //Question 5 
+        const DonneesBrut = ajax.responseText;
+        console.log("Données reçues (texte brut) : ", DonneesBrut);
+    };
+};</pre>
+                </li>
+
+                <li>
+                    <h3>Transformez la chaine de caractère stockée dans responseText au format JSON en objet JavaScript.
+                        Quel est le type de variable JavaScript obtenue ?</h3>
+                    <p>Le type de variable obtenu après JSON.parse() est un Objet (Object) JavaScript. Voici le code :</p>
+
+<pre>// Question 6
+    // On transforme le texte en objet exploitable
+    const donnees = JSON.parse(DonneesBrut);
+    console.log("Données transformées en objet :", donnees);</pre>
+                </li>
+
+                <li>
+                    <h3>Affichez, dans la console, un tableau contenant les noms des champs stockés dans votre objet JSON.
+                        Note : Quelle fonction permet de créer un tel tableau ?</h3>
+                    <p>La fonction Object.keys(data) permet d'obtenir un tableau des noms des champs. Voici le code :</p>
+
+<pre>// Question 7
+    // On affiche les clés (orange, banana, pear)
+    console.log("Liste des fruits :", Object.keys(donnees));</pre>
+                </li>
+
+                <li>
+                    <h3>Actuellement, le document exo1.html contient une table HTML. À l'aide de JavaScript, récupérez l'élément HTML correspondant à cette table, puis modifiez la table pour faire en sorte qu'elle contienne une ligne par fruit et deux colonnes : la première colonne contiendra le nom du fruit, et l'autre la quantité du fruit.
+                        Note : Vous devez modifier votre élément HTML uniquement à l'aide de votre code Javascript, et certainement pas en réécrivant à la main des portions du document exo1.html.</h3>
+
+<pre>// Question 8 : Remplissage de la table
+            const tableau = document.getElementById("basket");
+            const elementTotal = document.getElementById("quantity");
+            
+            let sommeQuantites = 0;
+
+            for (const fruit in donnees) {
+                
+                const ligne = tableau.insertRow();
+                
+                // On crée la cellule du nom (colonne 1)
+                const celluleNom = ligne.insertCell(0);
+                celluleNom.textContent = fruit;
+                
+                // On crée la cellule de la quantité (colonne 2)
+                const celluleQuantite = ligne.insertCell(1);
+                celluleQuantite.textContent = donnees[fruit];
+            };</pre>
+                </li>
+
+                <li>
+                    <h3>On souhaite maintenant que le span quantity de la page HTML soit mis à jour avec la somme des quantités de tous les fruits. Comment faire ?</h3>
+                    <p>On parcourt l'objet avec une boucle for...in puis on fait la somme des valeurs, puis on injecte le résultat dans le span d'id quantity.</p>
+
+<pre>// Question 8 : Remplissage de la table
+            const tableau = document.getElementById("basket");
+            const elementTotal = document.getElementById("quantity");
+            
+            let sommeQuantites = 0;
+
+            for (const fruit in donnees) {
+                
+                const ligne = tableau.insertRow();
+                
+                // On crée la cellule du nom (colonne 1)
+                const celluleNom = ligne.insertCell(0);
+                celluleNom.textContent = fruit;
+                
+                // On crée la cellule de la quantité (colonne 2)
+                const celluleQuantite = ligne.insertCell(1);
+                celluleQuantite.textContent = donnees[fruit];
+                
+                // Question 9 : On additionne la quantité au total
+                sommeQuantites += donnees[fruit];
+            }
+
+            // Question 9 : Mise à jour de la somme
+            elementTotal.textContent = sommeQuantites;</pre>
                 </li>
             </ol>
         </section>
 
         <section>
             <h2>Exercice 2 : Combien ça coûte ?</h2>
-            <ol>
+            <ol start="2">
+                <li>
+                    <h3>Quelle doit être la structure de données décrite dans le fichier prices.json ?
+                        Note : vous devez choisir votre structure en fonction de la façon dont vous voulez utiliser vos données
+                        Note 2 : si vous pensez à un tableau, pensez plus fort ! </h3>
+                    <p>La structure la plus simple est un objet "Clé: Valeur" où la clé est le nom du fruit et la valeur est son prix (ex: "orange": 10).</p>
+
+<pre>{
+  "orange": 10,
+  "banana": 20,
+  "pear": 5
+}</pre>
+                </li>
+
+                <li>
+                    <h3>Écrivez le fichier prices.json sachant que le prix d'une orange est 10 euros, le prix d'une banane est 20 euros et le prix d'une poire est 5 euros.
+                        Vérifiez que votre fichier respecte bien le format JSON en utilisant le validateur de JSON http://jsonlint.com/.</h3>
+                    <p>On utilise l'URL du serveur local (localhost) pour éviter les problèmes de droits d'accès.</p>
+
+                <li>
+                    <h3>Faites en sorte que le fichier prices.json soit chargé par une requête AJAX.
+                        Note : sachant que l'on charge déjà le fichier fruitQuantities.json avec une requête AJAX, faire en sorte qu'il y ait un seul code de chargement de requête AJAX (en faisant une fonction dont les deux arguments seront l'URL de la ressource que l'on veut charger et la fonction que l'on souhaitera appeler au moment où cette ressource aura été chargée).</h3>
+                    <p>L'imbrication est nécessaire car les requêtes sont asynchrones. On ne peut pas calculer le prix si on a les quantités mais que le fichier des prix n'est pas encore arrivé.</p>
+
+                <li>
+                    <h3>Faites en sorte de calculer le prix du panier et de mettre à jour la page Web avec le prix.</h3>
+                    <p>La fonction chargerFichierJSON rend le code plus "générique" : on lui donne une adresse et on lui dit quoi faire une fois que c'est prêt.</p>
+
+
+                </li>
             </ol>
+            <p>Code final de l'Exercice 2 : </p>
+<pre>"use strict";
+
+/**
+ * Question 5 : Fonction réutilisable pour charger des fichiers JSON
+ * Cette fonction permet d'éviter de réécrire XMLHttpRequest à chaque fois.
+ */
+function chargerFichierJSON(url, action) {
+    const ajax = new XMLHttpRequest();
+    ajax.open('GET', url, true);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState === 4 && ajax.status === 200) {
+            const donnees = JSON.parse(ajax.responseText);
+            // On appelle la fonction "action" avec les données récupérées
+            action(donnees);
+        }
+    };
+    ajax.send();
+}
+
+window.onload = function() {
+
+    // Question 3 : On définit l'URL locale pour les quantités
+    const urlQuantites = 'http://localhost:8080/fruitQuantities.json';
+    
+    // On lance le premier chargement
+    chargerFichierJSON(urlQuantites, function(donneesQuantites) {
+        // Question 4 : On charge le fichier des prix à l'intérieur du premier chargement
+        // Cela garantit que l'on possède toutes les données avant de calculer.
+        const urlPrix = 'http://localhost:8080/prices.json';
+        
+        chargerFichierJSON(urlPrix, function(donneesPrix) {
+            
+            const tableau = document.getElementById("basket");
+            const elementSomme = document.getElementById("quantity");
+            let prixTotalPanier = 0;
+
+            // Question 5 (suite) 
+            for (const fruit in donneesQuantites) {
+                
+                const ligne = tableau.insertRow();
+                
+                // Colonne 1 : Nom du fruit
+                const celluleNom = ligne.insertCell(0);
+                celluleNom.textContent = fruit;
+                
+                // Colonne 2 : Quantité
+                const quantite = donneesQuantites[fruit];
+                const celluleQuantite = ligne.insertCell(1);
+                celluleQuantite.textContent = quantite;
+                
+                // Calcul du prix total si le fruit existe dans le catalogue des prix
+                if (donneesPrix[fruit]) {
+                    const prixUnitaire = donneesPrix[fruit];
+                    prixTotalPanier += quantite * prixUnitaire;
+                }
+            }
+
+            // Affichage du résultat final dans le span "quantity"
+            elementSomme.textContent = prixTotalPanier + " €";
+            
+            console.log("Exercice 2 : Calcul du prix total terminé.");
+        });
+    });
+};</pre>
         </section>
 
         <section>
             <h2>Exercice 3 : Les promesses n'engagent que ceux qui y croient</h2>
             <ol>
+                <li>
+                    <h3></h3>
+                    <p></p>
+
+<pre></pre>
+                </li>
+
+                <li>
+                    <h3></h3>
+                    <p></p>
+
+<pre></pre>
+                </li>
+
+                <li>
+                    <h3></h3>
+                    <p></p>
+
+<pre></pre>
+                </li>
             </ol>
         </section>
 

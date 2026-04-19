@@ -1,4 +1,4 @@
-import cgi
+
 import sys
 import socket
 
